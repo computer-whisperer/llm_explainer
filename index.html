@@ -144,8 +144,17 @@
         <button class="seg active" data-dose="24k">+24k</button>
       </span>
       <label class="toggle"><input type="checkbox" id="rot-greedy" checked> greedy</label>
+      <button id="rot-view-filler" class="btn subtle">view the noise</button>
       <button id="rot-run" class="btn primary">Run A/B ▸</button>
     </div>
+
+    <dialog id="rot-lightbox" class="lightbox">
+      <div class="lightbox-head">
+        <div><b>The “unrelated notes”</b> <span class="hint" id="rot-lightbox-meta"></span></div>
+        <button class="btn subtle" id="rot-lightbox-close">✕ close</button>
+      </div>
+      <pre class="lightbox-body" id="rot-lightbox-body"></pre>
+    </dialog>
 
     <div class="rot-layout">
       <div class="rot-pane" id="rot-pane-a">

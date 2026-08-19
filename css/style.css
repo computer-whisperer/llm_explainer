@@ -312,6 +312,32 @@ main { flex: 1; overflow-y: auto; }
 .mini-bar-row .bar-pct { font-size: 12px; }
 .mini-bars .panel-label { margin-top: 6px; }
 
+/* ---------- lightbox ---------- */
+.lightbox {
+  width: min(940px, 92vw); height: 82vh;
+  background: var(--surface); color: var(--ink);
+  border: 1px solid var(--border); border-radius: 14px;
+  padding: 0; display: flex; flex-direction: column; overflow: hidden;
+}
+.lightbox:not([open]) { display: none; }
+.lightbox::backdrop { background: rgba(0, 0, 0, 0.65); }
+.lightbox-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 14px 20px; border-bottom: 1px solid var(--grid); flex: none;
+  font-size: 16px;
+}
+.lightbox-head .btn { white-space: nowrap; flex: none; }
+.lightbox-body {
+  margin: 0; padding: 16px 20px; overflow-y: auto; flex: 1;
+  font-family: var(--mono); font-size: 13px; line-height: 1.55;
+  white-space: pre-wrap; word-break: break-word; color: var(--ink-2);
+}
+.lightbox-body .beyond-cut { opacity: 0.35; }
+.lightbox-body .cut-marker {
+  display: block; color: var(--series-orange); font-weight: 600;
+  border-top: 1px dashed var(--series-orange); margin-top: 8px; padding-top: 8px;
+}
+
 /* ---------- tooltip ---------- */
 .tooltip {
   position: fixed; z-index: 10; pointer-events: none;

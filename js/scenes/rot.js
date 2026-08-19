@@ -180,6 +180,48 @@ export function initRotScene(client) {
     }
   }
 
+  // ---- filler lightbox ----
+
+  const lightbox = document.getElementById("rot-lightbox");
+  const lbBody = document.getElementById("rot-lightbox-body");
+  const lbMeta = document.getElementById("rot-lightbox-meta");
+
+  async function showFiller() {
+    lightbox.showModal();
+    lbMeta.textContent = "loading…";
+    try {
+      const [filler, cut] = await Promise.all([getFiller(), doseCut(dose)]);
+      lbBody.replaceChildren();
+      const shown = document.createElement("span");
+      shown.textContent = cut.text;
+      lbBody.appendChild(shown);
+      const marker = document.createElement("span");
+      marker.className = "cut-marker";
+      marker.textContent = `— cut for the +${dose} dose: the ${cut.tokens.toLocaleString()} tokens above go to the model —`;
+      lbBody.appendChild(marker);
+      if (filler.length > cut.text.length) {
+        const rest = document.createElement("span");
+        rest.className = "beyond-cut";
+        rest.textContent = filler.slice(cut.text.length);
+        lbBody.appendChild(rest);
+      }
+      lbMeta.textContent =
+        "deterministic fake quarterly notes (assets/filler.txt) — plausible, boring, and entirely unrelated to the question";
+      lbBody.scrollTop = 0;
+    } catch (e) {
+      lbMeta.textContent = `failed to load filler: ${e.message}`;
+    }
+  }
+
+  document.getElementById("rot-view-filler").addEventListener("click", showFiller);
+  B.meta.style.cursor = "pointer";
+  B.meta.title = "show the notes";
+  B.meta.addEventListener("click", showFiller);
+  document.getElementById("rot-lightbox-close").addEventListener("click", () => lightbox.close());
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) lightbox.close(); // backdrop click
+  });
+
   // ---- wiring ----
 
   runBtn.addEventListener("click", run);
@@ -219,4 +261,5 @@ export function initRotScene(client) {
     correct = PRESETS[pi].correct;
   }
   if (params.get("autorun") === "1" && params.get("scene") === "rot") run();
+  if (params.get("filler") === "1") showFiller();
 }
