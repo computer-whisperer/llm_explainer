@@ -72,8 +72,19 @@ in localStorage). Server config: `/ceph/public/k8s/apps/llama_cpp/llama-gemma-4-
    narrated beat, costs a ~25s prompt eval and evicts the rot cache.
    Staging: `?scene=think&thinkpreset=N&autorun=1&planted=1&diff=1`.
 
-Planned: a terminal segment staged separately (coding harness, CLAUDE.md
-A/B, Jacobian reaction) and a one-page presenter runbook.
+## Terminal segment
+
+`terminal/` holds the staged assets for the live-CLI half: `harness/` (tiny
+project with a planted eviction bug + failing tests), `claudemd-ab/` (same
+task, three CLAUDE.md personas), `jacobian/` (verification script + prompt
+beats for the fresh-instance reaction). `terminal/RUNBOOK.md` has the
+commands, env isolation (scratch-HOME approach — CLAUDE_CONFIG_DIR does NOT
+isolate memory in v2.1.235, and --bare requires an API key), timings, and
+fallbacks. Keep the repo root free of CLAUDE.md files: parent-dir memory
+auto-discovery would leak into the A/B demo.
+
+Planned: a one-page presenter runbook tying webui + terminal into the full
+session arc.
 
 ## Dev notes
 
