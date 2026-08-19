@@ -280,6 +280,38 @@ main { flex: 1; overflow-y: auto; }
 .doc-chips { max-height: 60vh; overflow-y: auto; }
 .doc-stats { margin-top: 8px; font-size: 13px; color: var(--ink-muted); font-family: var(--mono); }
 
+/* ---------- scene 4: context rot ---------- */
+.rot-controls { display: flex; gap: 12px; align-items: center; margin-bottom: 18px; flex-wrap: wrap; }
+.rot-q { flex: 1; min-width: 320px; font-size: 16px; padding: 9px 14px; }
+.rot-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+@media (max-width: 1100px) { .rot-layout { grid-template-columns: 1fr; } }
+.rot-pane {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 16px 18px;
+}
+#rot-pane-b { border-color: rgba(217, 89, 38, 0.35); }
+.rot-pane-head { font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+.rot-meta { color: var(--ink-muted); font-weight: 400; font-family: var(--mono); font-size: 13px; margin-left: 8px; }
+.rot-answer {
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
+  padding: 12px 14px; font-family: var(--mono); font-size: 20px; min-height: 52px;
+  white-space: pre-wrap; word-break: break-word;
+}
+.rot-idle { color: var(--ink-muted); }
+.rot-verdict { font-size: 14px; font-family: var(--sans); margin-left: 10px; padding: 2px 10px; border-radius: 999px; vertical-align: middle; }
+.rot-verdict.ok { background: rgba(12, 163, 12, 0.18); color: #7ed87e; }
+.rot-verdict.bad { background: rgba(208, 59, 59, 0.2); color: #f08c8c; }
+.rot-stats { margin: 12px 0 8px; }
+.rot-stats .spark-wrap { flex: 1; }
+.rot-stats .stat-value { font-size: 24px; }
+.mini-bars { margin-top: 4px; }
+.mini-bar-row { display: grid; grid-template-columns: 110px 1fr; align-items: center; gap: 8px; padding: 1px 0; }
+.mini-bar-row .bar-token { font-size: 13px; }
+.mini-bar-row .bar-track { height: 16px; }
+.mini-bar-row .bar-fill { height: 13px; }
+.mini-bar-row .bar-pct { font-size: 12px; }
+.mini-bars .panel-label { margin-top: 6px; }
+
 /* ---------- tooltip ---------- */
 .tooltip {
   position: fixed; z-index: 10; pointer-events: none;

@@ -1,5 +1,6 @@
 import { entropyBits } from "../api.js";
 import { renderChips, pieceHtml } from "../chips.js";
+import { drawSpark } from "../spark.js";
 
 // Document-shaped openings: the raw model continues prose instead of hitting
 // an end-of-document horizon two tokens in (where template junk surfaces).
@@ -175,49 +176,7 @@ export function initNextTokenScene(client) {
   }
 
   function renderSpark() {
-    const w = sparkEl.clientWidth || 300;
-    const hgt = 72;
-    sparkEl.setAttribute("viewBox", `0 0 ${w} ${hgt}`);
-    sparkEl.replaceChildren();
-    const ns = "http://www.w3.org/2000/svg";
-    const yMax = Math.max(4, ...entropyHist) * 1.08;
-    const pad = 6;
-    const y = (v) => hgt - pad - (v / yMax) * (hgt - 2 * pad);
-    const x = (i) =>
-      entropyHist.length > 1 ? pad + (i / (entropyHist.length - 1)) * (w - 2 * pad) : w / 2;
-
-    // hairline gridlines at whole bits
-    for (let g = 0; g <= yMax; g += 1) {
-      const line = document.createElementNS(ns, "line");
-      line.setAttribute("x1", 0);
-      line.setAttribute("x2", w);
-      line.setAttribute("y1", y(g));
-      line.setAttribute("y2", y(g));
-      line.setAttribute("stroke", g === 0 ? "#383835" : "#2c2c2a");
-      line.setAttribute("stroke-width", "1");
-      sparkEl.appendChild(line);
-    }
-    if (!entropyHist.length) return;
-
-    const pts = entropyHist.map((v, i) => `${x(i)},${y(v)}`).join(" ");
-    const line = document.createElementNS(ns, "polyline");
-    line.setAttribute("points", pts);
-    line.setAttribute("fill", "none");
-    line.setAttribute("stroke", "#199e70");
-    line.setAttribute("stroke-width", "2");
-    line.setAttribute("stroke-linejoin", "round");
-    line.setAttribute("stroke-linecap", "round");
-    sparkEl.appendChild(line);
-
-    const last = entropyHist.length - 1;
-    const dot = document.createElementNS(ns, "circle");
-    dot.setAttribute("cx", x(last));
-    dot.setAttribute("cy", y(entropyHist[last]));
-    dot.setAttribute("r", "4.5");
-    dot.setAttribute("fill", "#199e70");
-    dot.setAttribute("stroke", "#1a1a19");
-    dot.setAttribute("stroke-width", "2");
-    sparkEl.appendChild(dot);
+    drawSpark(sparkEl, entropyHist);
   }
 
   function renderKv(timings) {

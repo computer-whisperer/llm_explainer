@@ -91,19 +91,22 @@ export class LlamaClient {
 export async function streamCompletion(
   client,
   prompt,
-  { stop = [], slot = 0, signal, onToken } = {}
+  { stop = [], slot = 0, nProbs = 0, greedy = false, signal, onToken } = {}
 ) {
+  const body = {
+    prompt,
+    n_predict: 1024,
+    cache_prompt: true,
+    id_slot: slot,
+    stream: true,
+    stop,
+  };
+  if (nProbs) body.n_probs = nProbs;
+  if (greedy) body.temperature = 0;
   const res = await fetch(client.baseUrl + "/completion", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      prompt,
-      n_predict: 1024,
-      cache_prompt: true,
-      id_slot: slot,
-      stream: true,
-      stop,
-    }),
+    body: JSON.stringify(body),
     signal,
   });
   if (!res.ok) throw new Error(`/completion → HTTP ${res.status}: ${await res.text()}`);
@@ -124,7 +127,8 @@ export async function streamCompletion(
       const d = JSON.parse(line.slice(6));
       if (d.content) {
         content += d.content;
-        onToken?.(d.content);
+        // with nProbs, each chunk carries this token's chosen logprob + top-k
+        onToken?.(d.content, d.completion_probabilities?.[0]);
       }
       if (d.stop) final = d;
     }

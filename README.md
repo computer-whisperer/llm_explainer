@@ -37,10 +37,26 @@ in localStorage). Server config: `/ceph/public/k8s/apps/llama_cpp/llama-gemma-4-
    re-rendered through the template, so the doc view and KV numbers stay
    truthful. Staging: `?scene=document&preset=N&autorun=1&autoreply=1`.
 
-Planned: Context Rot (pre-cooked degraded sessions + live continuation +
-entropy timeline), thinking traces (the `<|channel>thought` machinery is
-already understood), plus a terminal segment staged separately (coding
-harness, CLAUDE.md A/B, Jacobian reaction).
+4. **Context Rot** — A/B: the same question answered fresh vs after 4k/12k/24k
+   tokens of unrelated filler (`assets/filler.txt`, deterministic fake
+   engineering notes from `dev/gen_filler.py`). Streams both answers with
+   whole-answer probability, per-token entropy, first-token distribution
+   bars, and prompt-eval timings. A runs on slot 0, B on slot 2 (keeps the
+   big prefix warm across runs — **prewarm B once before the talk**).
+   Staging: `?scene=rot&rotpreset=N&dose=24k&autorun=1`.
+
+   Calibration (2026-08-19, greedy): gemma-4-31B is robust to distractor
+   context on easy questions (3×2 mult, riddles, date math: unchanged at 24k)
+   — degradation concentrates at the capability edge. 4×3-digit
+   multiplication: 1234*567 ✓p=.98 fresh → ✗700678 p=.93 at 12k+ (the
+   headline: *confidently* wrong — first-token mass visibly flips 6→7);
+   4276*158 ✓p=.97 → ✗p=.59; 2847*639 p=.69 → p=.08 (shattered; re-rolls
+   vary with sampling on). Prompt shapes in `js/scenes/rot.js` must stay
+   byte-identical to the calibration script or the numbers shift.
+
+Planned: thinking traces (the `<|channel>thought` machinery is already
+understood), plus a terminal segment staged separately (coding harness,
+CLAUDE.md A/B, Jacobian reaction).
 
 ## Dev notes
 

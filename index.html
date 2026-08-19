@@ -13,6 +13,7 @@
     <button class="tab active" data-scene="tokenizer" title="Key: 1">1 · Tokens</button>
     <button class="tab" data-scene="nexttoken" title="Key: 2">2 · Next-token loop</button>
     <button class="tab" data-scene="document" title="Key: 3">3 · The Document</button>
+    <button class="tab" data-scene="rot" title="Key: 4">4 · Context Rot</button>
   </nav>
   <div class="server-status" id="server-status">
     <span class="dot" id="status-dot"></span>
@@ -120,6 +121,56 @@
             <svg id="nt-spark" width="100%" height="72" preserveAspectRatio="none"></svg>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Scene 4: Context Rot ============ -->
+  <section class="scene" id="scene-rot">
+    <div class="scene-head">
+      <h1>Context is a budget, not a filing cabinet</h1>
+      <p class="lede">The same question, asked fresh and asked after thousands of tokens of
+        unrelated notes. Every token in context competes for the model's attention —
+        junk isn't free, even when it's ignored.</p>
+    </div>
+
+    <div class="presets" id="rot-presets"></div>
+
+    <div class="rot-controls">
+      <input id="rot-question" class="big-input rot-q" spellcheck="false">
+      <span class="seg-toggle" id="rot-dose">
+        <button class="seg" data-dose="4k">+4k</button>
+        <button class="seg" data-dose="12k">+12k</button>
+        <button class="seg active" data-dose="24k">+24k</button>
+      </span>
+      <label class="toggle"><input type="checkbox" id="rot-greedy" checked> greedy</label>
+      <button id="rot-run" class="btn primary">Run A/B ▸</button>
+    </div>
+
+    <div class="rot-layout">
+      <div class="rot-pane" id="rot-pane-a">
+        <div class="rot-pane-head">A — fresh context <span class="rot-meta" id="rot-a-meta"></span></div>
+        <div class="rot-answer" id="rot-a-answer"><span class="rot-idle">—</span></div>
+        <div class="stat-row rot-stats">
+          <div class="stat-tile"><div class="stat-label">p(this exact answer)</div>
+            <div class="stat-value" id="rot-a-p">–</div></div>
+          <div class="spark-wrap"><div class="panel-label">uncertainty per token</div>
+            <svg id="rot-a-spark" width="100%" height="60" preserveAspectRatio="none"></svg></div>
+        </div>
+        <div class="mini-bars" id="rot-a-bars"></div>
+        <div class="kv-note" id="rot-a-kv"></div>
+      </div>
+      <div class="rot-pane" id="rot-pane-b">
+        <div class="rot-pane-head">B — after the noise <span class="rot-meta" id="rot-b-meta"></span></div>
+        <div class="rot-answer" id="rot-b-answer"><span class="rot-idle">—</span></div>
+        <div class="stat-row rot-stats">
+          <div class="stat-tile"><div class="stat-label">p(this exact answer)</div>
+            <div class="stat-value" id="rot-b-p">–</div></div>
+          <div class="spark-wrap"><div class="panel-label">uncertainty per token</div>
+            <svg id="rot-b-spark" width="100%" height="60" preserveAspectRatio="none"></svg></div>
+        </div>
+        <div class="mini-bars" id="rot-b-bars"></div>
+        <div class="kv-note" id="rot-b-kv"></div>
       </div>
     </div>
   </section>

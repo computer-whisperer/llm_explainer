@@ -1,0 +1,841 @@
+ENGINEERING NOTES — Q2 SUMMARY (internal, for reference)
+
+§1. Week 1 — Platform team.
+Oleg paired with Mobile on the shared library upgrade. The remaining work is blocked on the vendor upgrade. Deploy window for week 1 completed without rollback. After the change, throughput improved by 61%. Yuki benchmarked the notification fanout and closed out 6 tickets. Capacity review: current headroom is about 41% at peak. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy.
+
+§2. Week 1 — Ingest team.
+The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. Wei load-tested the search indexer and closed out 2 tickets. Liam paired with QA on the shared library upgrade. After the change, throughput improved by 90%.
+
+§3. Week 1 — Billing team.
+Deploy window for week 1 completed without rollback. The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy. Wei paired with Mobile on the shared library upgrade. Fatima deprecated the feature-flag service and closed out 3 tickets. Follow-up items are tracked in the team backlog.
+
+§4. Week 1 — Mobile team.
+Follow-up items are tracked in the team backlog. After the change, build times went from 408 s to 21 s. Capacity review: current headroom is about 52% at peak. The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy. Nadia paired with Ingest on the shared library upgrade. Deploy window for week 1 completed without rollback.
+
+§5. Week 1 — Search team.
+Deploy window for week 1 completed without rollback. Capacity review: current headroom is about 16% at peak. A design review will decide whether to generalize this. Ingrid paired with QA on the shared library upgrade. Marcus load-tested the image resizer and closed out 5 tickets.
+
+§6. Week 1 — Infra team.
+Ingrid refactored the notification fanout and closed out 5 tickets. The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 38% at peak. After the change, throughput improved by 33%. Deploy window for week 1 completed without rollback.
+
+§7. Week 1 — Data team.
+A postmortem review is scheduled for the coming sprint. Deploy window for week 1 completed without rollback. Capacity review: current headroom is about 50% at peak. After the change, throughput improved by 41%. Tomás paired with Auth on the shared library upgrade. The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy.
+
+§8. Week 1 — Frontend team.
+The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy. After the change, on-call pages dropped by 89%. Follow-up items are tracked in the team backlog. Capacity review: current headroom is about 48% at peak. Ruth paired with Payments on the shared library upgrade. Deploy window for week 1 completed without rollback.
+
+§9. Week 1 — Auth team.
+A postmortem review is scheduled for the coming sprint. Capacity review: current headroom is about 17% at peak. Ruth hardened the ingestion pipeline and closed out 2 tickets. Deploy window for week 1 completed without rollback. Fatima paired with Infra on the shared library upgrade.
+
+§10. Week 1 — Notifications team.
+The remaining work is blocked on the vendor upgrade. After the change, storage costs came down roughly 27%. Deploy window for week 1 completed without rollback. Sam hardened the ingestion pipeline and closed out 14 tickets. Amara paired with Auth on the shared library upgrade.
+
+§11. Week 1 — QA team.
+Liam paired with Data on the shared library upgrade. Follow-up items are tracked in the team backlog. Deploy window for week 1 completed without rollback. Ruth hardened the export service and closed out 9 tickets.
+
+§12. Week 1 — SRE team.
+Capacity review: current headroom is about 42% at peak. Sam paired with Search on the shared library upgrade. The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. The remaining work is blocked on the vendor upgrade. After the change, build times went from 600 s to 36 s. Oleg simplified the deploy orchestrator and closed out 11 tickets. Deploy window for week 1 completed without rollback.
+
+§13. Week 1 — Payments team.
+A design review will decide whether to generalize this. Sam paired with Billing on the shared library upgrade. Capacity review: current headroom is about 34% at peak. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy.
+
+§14. Week 1 — Analytics team.
+A design review will decide whether to generalize this. Capacity review: current headroom is about 33% at peak. Deploy window for week 1 completed without rollback. Jonas paired with Mobile on the shared library upgrade. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy. Priya documented the image resizer and closed out 3 tickets.
+
+§15. Week 2 — Platform team.
+Deploy window for week 2 completed without rollback. Priya documented the session store and closed out 6 tickets. After the change, error rate fell to 0.035%. Capacity review: current headroom is about 48% at peak. Yuki paired with Infra on the shared library upgrade. A design review will decide whether to generalize this. The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy.
+
+§16. Week 2 — Ingest team.
+The team investigated an off-by-one in pagination; root cause was traced to a misconfigured retry policy. Amara paired with QA on the shared library upgrade. After the change, p95 latency dropped from 671 ms to 75 ms. Dario benchmarked the image resizer and closed out 9 tickets.
+
+§17. Week 2 — Billing team.
+Tomás benchmarked the notification fanout and closed out 13 tickets. The team investigated an off-by-one in pagination; root cause was traced to a misconfigured retry policy. Follow-up items are tracked in the team backlog. Deploy window for week 2 completed without rollback.
+
+§18. Week 2 — Mobile team.
+Marcus documented the export service and closed out 14 tickets. Deploy window for week 2 completed without rollback. Wei paired with Infra on the shared library upgrade. Next quarter the focus shifts to capacity planning. After the change, p95 latency dropped from 572 ms to 17 ms.
+
+§19. Week 2 — Search team.
+After the change, p95 latency dropped from 172 ms to 91 ms. Kofi paired with Search on the shared library upgrade. Capacity review: current headroom is about 39% at peak. A postmortem review is scheduled for the coming sprint. Nadia load-tested the export service and closed out 6 tickets.
+
+§20. Week 2 — Infra team.
+Marcus migrated the image resizer and closed out 9 tickets. After the change, throughput improved by 46%. Follow-up items are tracked in the team backlog. Capacity review: current headroom is about 46% at peak. Deploy window for week 2 completed without rollback. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy.
+
+§21. Week 2 — Data team.
+No further action is expected unless the trend reverses. Capacity review: current headroom is about 31% at peak. After the change, storage costs came down roughly 81%. Yuki load-tested the deploy orchestrator and closed out 6 tickets. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy.
+
+§22. Week 2 — Frontend team.
+Capacity review: current headroom is about 49% at peak. Deploy window for week 2 completed without rollback. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. After the change, p95 latency dropped from 505 ms to 27 ms. Dario paired with Platform on the shared library upgrade. Follow-up items are tracked in the team backlog. Yuki instrumented the ingestion pipeline and closed out 14 tickets.
+
+§23. Week 2 — Auth team.
+The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. Deploy window for week 2 completed without rollback. Fatima paired with Platform on the shared library upgrade. No further action is expected unless the trend reverses. Capacity review: current headroom is about 45% at peak. Ruth containerized the audit logger and closed out 9 tickets.
+
+§24. Week 2 — Notifications team.
+Dario paired with Mobile on the shared library upgrade. Deploy window for week 2 completed without rollback. A design review will decide whether to generalize this. The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy. After the change, error rate fell to 0.082%. Oleg benchmarked the rate limiter and closed out 3 tickets. Capacity review: current headroom is about 34% at peak.
+
+§25. Week 2 — QA team.
+Next quarter the focus shifts to capacity planning. After the change, p95 latency dropped from 841 ms to 71 ms. Deploy window for week 2 completed without rollback. Nadia paired with Payments on the shared library upgrade.
+
+§26. Week 2 — SRE team.
+The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 58% at peak. Deploy window for week 2 completed without rollback. Petra paired with SRE on the shared library upgrade. Nadia migrated the rate limiter and closed out 3 tickets. After the change, on-call pages dropped by 18%. A design review will decide whether to generalize this.
+
+§27. Week 2 — Payments team.
+Deploy window for week 2 completed without rollback. After the change, throughput improved by 90%. Capacity review: current headroom is about 20% at peak. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy. Priya paired with Data on the shared library upgrade. The remaining work is blocked on the vendor upgrade. Petra refactored the feature-flag service and closed out 10 tickets.
+
+§28. Week 2 — Analytics team.
+The remaining work is blocked on the vendor upgrade. The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. Liam migrated the deploy orchestrator and closed out 5 tickets. Capacity review: current headroom is about 19% at peak. Deploy window for week 2 completed without rollback. After the change, storage costs came down roughly 57%.
+
+§29. Week 3 — Platform team.
+Deploy window for week 3 completed without rollback. Oleg paired with Data on the shared library upgrade. After the change, build times went from 573 s to 71 s. Capacity review: current headroom is about 28% at peak.
+
+§30. Week 3 — Ingest team.
+The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy. Petra deprecated the billing reconciler and closed out 8 tickets. Tomás paired with Data on the shared library upgrade. After the change, on-call pages dropped by 36%. The remaining work is blocked on the vendor upgrade.
+
+§31. Week 3 — Billing team.
+The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 46% at peak. No further action is expected unless the trend reverses. Wei paired with Auth on the shared library upgrade. After the change, p95 latency dropped from 301 ms to 72 ms. Deploy window for week 3 completed without rollback.
+
+§32. Week 3 — Mobile team.
+Elena paired with Infra on the shared library upgrade. Deploy window for week 3 completed without rollback. After the change, storage costs came down roughly 50%. Jonas containerized the search indexer and closed out 11 tickets. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 17% at peak.
+
+§33. Week 3 — Search team.
+Next quarter the focus shifts to capacity planning. Deploy window for week 3 completed without rollback. Capacity review: current headroom is about 43% at peak. The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy. Fatima benchmarked the notification fanout and closed out 4 tickets. Yuki paired with Analytics on the shared library upgrade. After the change, error rate fell to 0.055%.
+
+§34. Week 3 — Infra team.
+Deploy window for week 3 completed without rollback. Dario paired with Notifications on the shared library upgrade. After the change, storage costs came down roughly 51%. Ruth load-tested the metrics collector and closed out 13 tickets. Follow-up items are tracked in the team backlog. Capacity review: current headroom is about 26% at peak. The team investigated slow cold starts; root cause was traced to a misconfigured retry policy.
+
+§35. Week 3 — Data team.
+The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. Deploy window for week 3 completed without rollback. Capacity review: current headroom is about 33% at peak. Ingrid migrated the ingestion pipeline and closed out 5 tickets. No further action is expected unless the trend reverses. After the change, build times went from 334 s to 57 s. Oleg paired with QA on the shared library upgrade.
+
+§36. Week 3 — Frontend team.
+Deploy window for week 3 completed without rollback. No further action is expected unless the trend reverses. Oleg load-tested the feature-flag service and closed out 7 tickets. Capacity review: current headroom is about 53% at peak. Tomás paired with SRE on the shared library upgrade. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy.
+
+§37. Week 3 — Auth team.
+After the change, error rate fell to 0.029%. Jonas instrumented the image resizer and closed out 12 tickets. The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy. Deploy window for week 3 completed without rollback.
+
+§38. Week 3 — Notifications team.
+Next quarter the focus shifts to capacity planning. After the change, throughput improved by 15%. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy. Deploy window for week 3 completed without rollback. Capacity review: current headroom is about 26% at peak.
+
+§39. Week 3 — QA team.
+After the change, p95 latency dropped from 502 ms to 14 ms. Ruth load-tested the deploy orchestrator and closed out 12 tickets. The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy. A postmortem review is scheduled for the coming sprint. Priya paired with Ingest on the shared library upgrade. Deploy window for week 3 completed without rollback.
+
+§40. Week 3 — SRE team.
+The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. Follow-up items are tracked in the team backlog. Dario paired with Billing on the shared library upgrade. After the change, on-call pages dropped by 48%. Deploy window for week 3 completed without rollback.
+
+§41. Week 3 — Payments team.
+After the change, on-call pages dropped by 29%. Amara paired with Auth on the shared library upgrade. Elena containerized the session store and closed out 10 tickets. Capacity review: current headroom is about 52% at peak.
+
+§42. Week 3 — Analytics team.
+Deploy window for week 3 completed without rollback. Next quarter the focus shifts to capacity planning. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy. Ingrid paired with Analytics on the shared library upgrade.
+
+§43. Week 4 — Platform team.
+Capacity review: current headroom is about 22% at peak. The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy. After the change, build times went from 409 s to 93 s. A postmortem review is scheduled for the coming sprint. Tomás paired with Mobile on the shared library upgrade. Ruth benchmarked the deploy orchestrator and closed out 9 tickets. Deploy window for week 4 completed without rollback.
+
+§44. Week 4 — Ingest team.
+Amara instrumented the export service and closed out 2 tickets. Capacity review: current headroom is about 38% at peak. After the change, error rate fell to 0.030%. Elena paired with Frontend on the shared library upgrade. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy.
+
+§45. Week 4 — Billing team.
+Nadia paired with Infra on the shared library upgrade. After the change, storage costs came down roughly 47%. Capacity review: current headroom is about 43% at peak. Deploy window for week 4 completed without rollback. The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. Ruth deprecated the search indexer and closed out 7 tickets.
+
+§46. Week 4 — Mobile team.
+Jonas paired with Payments on the shared library upgrade. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. After the change, storage costs came down roughly 12%. Deploy window for week 4 completed without rollback. Marcus simplified the image resizer and closed out 9 tickets. Capacity review: current headroom is about 49% at peak.
+
+§47. Week 4 — Search team.
+Deploy window for week 4 completed without rollback. Follow-up items are tracked in the team backlog. Capacity review: current headroom is about 60% at peak. After the change, on-call pages dropped by 73%. Yuki paired with QA on the shared library upgrade.
+
+§48. Week 4 — Infra team.
+The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 17% at peak. Amara simplified the deploy orchestrator and closed out 14 tickets. After the change, build times went from 866 s to 92 s.
+
+§49. Week 4 — Data team.
+Capacity review: current headroom is about 33% at peak. Marcus containerized the deploy orchestrator and closed out 4 tickets. Petra paired with Notifications on the shared library upgrade. A postmortem review is scheduled for the coming sprint.
+
+§50. Week 4 — Frontend team.
+Capacity review: current headroom is about 32% at peak. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy. After the change, on-call pages dropped by 14%. Petra instrumented the ingestion pipeline and closed out 9 tickets. A design review will decide whether to generalize this. Oleg paired with Data on the shared library upgrade. Deploy window for week 4 completed without rollback.
+
+§51. Week 4 — Auth team.
+Yuki paired with Billing on the shared library upgrade. Deploy window for week 4 completed without rollback. Capacity review: current headroom is about 32% at peak. Follow-up items are tracked in the team backlog. After the change, storage costs came down roughly 52%. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. Tomás deprecated the notification fanout and closed out 5 tickets.
+
+§52. Week 4 — Notifications team.
+After the change, p95 latency dropped from 484 ms to 39 ms. Deploy window for week 4 completed without rollback. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. Jonas load-tested the billing reconciler and closed out 11 tickets. The remaining work is blocked on the vendor upgrade.
+
+§53. Week 4 — QA team.
+The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy. Yuki paired with Infra on the shared library upgrade. Deploy window for week 4 completed without rollback. Nadia deprecated the feature-flag service and closed out 9 tickets. A design review will decide whether to generalize this. After the change, on-call pages dropped by 27%.
+
+§54. Week 4 — SRE team.
+Sam documented the deploy orchestrator and closed out 12 tickets. No further action is expected unless the trend reverses. Dario paired with Payments on the shared library upgrade. Deploy window for week 4 completed without rollback. The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 48% at peak. After the change, error rate fell to 0.011%.
+
+§55. Week 4 — Payments team.
+Nadia deprecated the ingestion pipeline and closed out 8 tickets. Tomás paired with Data on the shared library upgrade. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 55% at peak. Deploy window for week 4 completed without rollback.
+
+§56. Week 4 — Analytics team.
+The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. Next quarter the focus shifts to capacity planning. Fatima migrated the search indexer and closed out 14 tickets. Deploy window for week 4 completed without rollback. Capacity review: current headroom is about 57% at peak. Marcus paired with Frontend on the shared library upgrade. After the change, throughput improved by 86%.
+
+§57. Week 5 — Platform team.
+Tomás paired with Ingest on the shared library upgrade. Capacity review: current headroom is about 23% at peak. Deploy window for week 5 completed without rollback. Fatima migrated the audit logger and closed out 14 tickets. The remaining work is blocked on the vendor upgrade. After the change, p95 latency dropped from 666 ms to 63 ms.
+
+§58. Week 5 — Ingest team.
+After the change, error rate fell to 0.024%. The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy. Fatima paired with Analytics on the shared library upgrade. Jonas migrated the deploy orchestrator and closed out 2 tickets. Deploy window for week 5 completed without rollback. Follow-up items are tracked in the team backlog. Capacity review: current headroom is about 50% at peak.
+
+§59. Week 5 — Billing team.
+Nadia simplified the feature-flag service and closed out 12 tickets. After the change, p95 latency dropped from 672 ms to 42 ms. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 19% at peak. No further action is expected unless the trend reverses. Sam paired with Platform on the shared library upgrade.
+
+§60. Week 5 — Mobile team.
+Kofi paired with Notifications on the shared library upgrade. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. After the change, storage costs came down roughly 38%. Deploy window for week 5 completed without rollback. Capacity review: current headroom is about 19% at peak. A postmortem review is scheduled for the coming sprint.
+
+§61. Week 5 — Search team.
+The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy. Amara paired with Billing on the shared library upgrade. Capacity review: current headroom is about 59% at peak. Petra benchmarked the metrics collector and closed out 9 tickets.
+
+§62. Week 5 — Infra team.
+The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. After the change, throughput improved by 14%. Follow-up items are tracked in the team backlog. Jonas containerized the ingestion pipeline and closed out 11 tickets. Deploy window for week 5 completed without rollback. Liam paired with Payments on the shared library upgrade.
+
+§63. Week 5 — Data team.
+The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy. After the change, on-call pages dropped by 84%. Wei load-tested the ingestion pipeline and closed out 6 tickets. Dario paired with Notifications on the shared library upgrade.
+
+§64. Week 5 — Frontend team.
+After the change, throughput improved by 54%. Deploy window for week 5 completed without rollback. No further action is expected unless the trend reverses. Tomás simplified the billing reconciler and closed out 4 tickets. Jonas paired with Analytics on the shared library upgrade. Capacity review: current headroom is about 59% at peak. The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy.
+
+§65. Week 5 — Auth team.
+Deploy window for week 5 completed without rollback. The remaining work is blocked on the vendor upgrade. Yuki paired with Payments on the shared library upgrade. Capacity review: current headroom is about 43% at peak. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy.
+
+§66. Week 5 — Notifications team.
+A postmortem review is scheduled for the coming sprint. Deploy window for week 5 completed without rollback. Yuki simplified the deploy orchestrator and closed out 11 tickets. Capacity review: current headroom is about 21% at peak. Petra paired with Frontend on the shared library upgrade.
+
+§67. Week 5 — QA team.
+Wei paired with Billing on the shared library upgrade. Next quarter the focus shifts to capacity planning. Capacity review: current headroom is about 30% at peak. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. Deploy window for week 5 completed without rollback. Priya benchmarked the search indexer and closed out 5 tickets.
+
+§68. Week 5 — SRE team.
+Capacity review: current headroom is about 51% at peak. The remaining work is blocked on the vendor upgrade. Yuki documented the rate limiter and closed out 5 tickets. Elena paired with Platform on the shared library upgrade.
+
+§69. Week 5 — Payments team.
+Capacity review: current headroom is about 18% at peak. The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy. Amara migrated the search indexer and closed out 9 tickets. A design review will decide whether to generalize this. Deploy window for week 5 completed without rollback.
+
+§70. Week 5 — Analytics team.
+After the change, p95 latency dropped from 798 ms to 80 ms. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy. Deploy window for week 5 completed without rollback. Sam paired with Ingest on the shared library upgrade. Tomás load-tested the export service and closed out 6 tickets. The remaining work is blocked on the vendor upgrade.
+
+§71. Week 6 — Platform team.
+Deploy window for week 6 completed without rollback. No further action is expected unless the trend reverses. Capacity review: current headroom is about 42% at peak. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy. After the change, build times went from 400 s to 15 s. Petra documented the feature-flag service and closed out 3 tickets.
+
+§72. Week 6 — Ingest team.
+Kofi paired with Frontend on the shared library upgrade. Oleg migrated the feature-flag service and closed out 12 tickets. Deploy window for week 6 completed without rollback. Capacity review: current headroom is about 31% at peak. The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. After the change, error rate fell to 0.051%.
+
+§73. Week 6 — Billing team.
+Capacity review: current headroom is about 47% at peak. Wei paired with SRE on the shared library upgrade. Deploy window for week 6 completed without rollback. After the change, on-call pages dropped by 48%. Follow-up items are tracked in the team backlog. The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. Yuki containerized the image resizer and closed out 12 tickets.
+
+§74. Week 6 — Mobile team.
+Deploy window for week 6 completed without rollback. Fatima benchmarked the rate limiter and closed out 11 tickets. Amara paired with Ingest on the shared library upgrade. The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 30% at peak. The remaining work is blocked on the vendor upgrade.
+
+§75. Week 6 — Search team.
+Capacity review: current headroom is about 52% at peak. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy. Jonas paired with Analytics on the shared library upgrade. After the change, build times went from 259 s to 43 s. No further action is expected unless the trend reverses. Kofi containerized the feature-flag service and closed out 2 tickets. Deploy window for week 6 completed without rollback.
+
+§76. Week 6 — Infra team.
+Capacity review: current headroom is about 56% at peak. After the change, throughput improved by 8%. Oleg hardened the billing reconciler and closed out 12 tickets. Deploy window for week 6 completed without rollback. A design review will decide whether to generalize this.
+
+§77. Week 6 — Data team.
+Next quarter the focus shifts to capacity planning. Ingrid paired with Ingest on the shared library upgrade. Yuki deprecated the session store and closed out 9 tickets. After the change, p95 latency dropped from 265 ms to 32 ms.
+
+§78. Week 6 — Frontend team.
+Deploy window for week 6 completed without rollback. After the change, throughput improved by 77%. The remaining work is blocked on the vendor upgrade. Oleg documented the ingestion pipeline and closed out 7 tickets.
+
+§79. Week 6 — Auth team.
+After the change, on-call pages dropped by 74%. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy. Dario containerized the search indexer and closed out 4 tickets. Ruth paired with Mobile on the shared library upgrade. Capacity review: current headroom is about 54% at peak.
+
+§80. Week 6 — Notifications team.
+Dario paired with Auth on the shared library upgrade. Fatima containerized the metrics collector and closed out 6 tickets. The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. Deploy window for week 6 completed without rollback. After the change, storage costs came down roughly 23%.
+
+§81. Week 6 — QA team.
+The remaining work is blocked on the vendor upgrade. Deploy window for week 6 completed without rollback. Capacity review: current headroom is about 52% at peak. Priya paired with Auth on the shared library upgrade. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy. After the change, error rate fell to 0.023%.
+
+§82. Week 6 — SRE team.
+Capacity review: current headroom is about 32% at peak. Deploy window for week 6 completed without rollback. A design review will decide whether to generalize this. Dario deprecated the ingestion pipeline and closed out 9 tickets. After the change, build times went from 615 s to 72 s.
+
+§83. Week 6 — Payments team.
+Capacity review: current headroom is about 41% at peak. After the change, build times went from 201 s to 95 s. The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy. Dario migrated the search indexer and closed out 7 tickets. Kofi paired with Platform on the shared library upgrade. Deploy window for week 6 completed without rollback. Follow-up items are tracked in the team backlog.
+
+§84. Week 6 — Analytics team.
+Elena instrumented the notification fanout and closed out 10 tickets. After the change, build times went from 788 s to 11 s. The remaining work is blocked on the vendor upgrade. Tomás paired with Infra on the shared library upgrade. Deploy window for week 6 completed without rollback.
+
+§85. Week 7 — Platform team.
+Oleg deprecated the export service and closed out 6 tickets. After the change, on-call pages dropped by 9%. Next quarter the focus shifts to capacity planning. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy. Deploy window for week 7 completed without rollback.
+
+§86. Week 7 — Ingest team.
+After the change, on-call pages dropped by 20%. Petra paired with Analytics on the shared library upgrade. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy. Deploy window for week 7 completed without rollback.
+
+§87. Week 7 — Billing team.
+Deploy window for week 7 completed without rollback. Jonas containerized the audit logger and closed out 13 tickets. After the change, p95 latency dropped from 678 ms to 67 ms. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy. A design review will decide whether to generalize this. Petra paired with Platform on the shared library upgrade.
+
+§88. Week 7 — Mobile team.
+Elena paired with Notifications on the shared library upgrade. Dario documented the feature-flag service and closed out 3 tickets. Capacity review: current headroom is about 24% at peak. After the change, throughput improved by 84%. Next quarter the focus shifts to capacity planning. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy.
+
+§89. Week 7 — Search team.
+Dario documented the session store and closed out 7 tickets. Nadia paired with Platform on the shared library upgrade. After the change, storage costs came down roughly 73%. Capacity review: current headroom is about 42% at peak. Deploy window for week 7 completed without rollback.
+
+§90. Week 7 — Infra team.
+Deploy window for week 7 completed without rollback. The team investigated an off-by-one in pagination; root cause was traced to a misconfigured retry policy. A design review will decide whether to generalize this. Wei paired with Mobile on the shared library upgrade. Capacity review: current headroom is about 20% at peak. Priya migrated the export service and closed out 11 tickets. After the change, storage costs came down roughly 9%.
+
+§91. Week 7 — Data team.
+Next quarter the focus shifts to capacity planning. After the change, throughput improved by 11%. Deploy window for week 7 completed without rollback. Marcus paired with Auth on the shared library upgrade.
+
+§92. Week 7 — Frontend team.
+The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. Dario documented the feature-flag service and closed out 4 tickets. After the change, error rate fell to 0.075%. Deploy window for week 7 completed without rollback. A postmortem review is scheduled for the coming sprint. Capacity review: current headroom is about 21% at peak.
+
+§93. Week 7 — Auth team.
+Deploy window for week 7 completed without rollback. Sam hardened the ingestion pipeline and closed out 14 tickets. Capacity review: current headroom is about 34% at peak. The team investigated an off-by-one in pagination; root cause was traced to a misconfigured retry policy. Next quarter the focus shifts to capacity planning. After the change, throughput improved by 92%.
+
+§94. Week 7 — Notifications team.
+Tomás documented the export service and closed out 7 tickets. Deploy window for week 7 completed without rollback. Capacity review: current headroom is about 50% at peak. After the change, p95 latency dropped from 822 ms to 70 ms. The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy. Follow-up items are tracked in the team backlog. Ruth paired with Billing on the shared library upgrade.
+
+§95. Week 7 — QA team.
+After the change, throughput improved by 33%. Deploy window for week 7 completed without rollback. Jonas paired with Billing on the shared library upgrade. Capacity review: current headroom is about 50% at peak. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. Next quarter the focus shifts to capacity planning. Dario instrumented the export service and closed out 2 tickets.
+
+§96. Week 7 — SRE team.
+Oleg paired with Payments on the shared library upgrade. After the change, p95 latency dropped from 439 ms to 42 ms. Deploy window for week 7 completed without rollback. Capacity review: current headroom is about 37% at peak. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. Jonas load-tested the search indexer and closed out 4 tickets.
+
+§97. Week 7 — Payments team.
+Dario hardened the audit logger and closed out 4 tickets. A design review will decide whether to generalize this. Deploy window for week 7 completed without rollback. Tomás paired with Platform on the shared library upgrade.
+
+§98. Week 7 — Analytics team.
+The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. Petra paired with Analytics on the shared library upgrade. Capacity review: current headroom is about 52% at peak. After the change, throughput improved by 61%. No further action is expected unless the trend reverses. Deploy window for week 7 completed without rollback.
+
+§99. Week 8 — Platform team.
+Dario paired with Billing on the shared library upgrade. The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. The remaining work is blocked on the vendor upgrade. After the change, error rate fell to 0.012%. Petra containerized the metrics collector and closed out 8 tickets. Capacity review: current headroom is about 53% at peak. Deploy window for week 8 completed without rollback.
+
+§100. Week 8 — Ingest team.
+Wei documented the deploy orchestrator and closed out 8 tickets. Elena paired with Search on the shared library upgrade. After the change, p95 latency dropped from 368 ms to 68 ms. Deploy window for week 8 completed without rollback. The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy. Next quarter the focus shifts to capacity planning.
+
+§101. Week 8 — Billing team.
+The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy. The remaining work is blocked on the vendor upgrade. Tomás instrumented the deploy orchestrator and closed out 6 tickets. After the change, on-call pages dropped by 14%. Deploy window for week 8 completed without rollback. Amara paired with Billing on the shared library upgrade. Capacity review: current headroom is about 48% at peak.
+
+§102. Week 8 — Mobile team.
+Elena paired with Notifications on the shared library upgrade. Liam simplified the feature-flag service and closed out 6 tickets. Next quarter the focus shifts to capacity planning. Capacity review: current headroom is about 38% at peak. After the change, on-call pages dropped by 74%. Deploy window for week 8 completed without rollback.
+
+§103. Week 8 — Search team.
+Marcus paired with Ingest on the shared library upgrade. A postmortem review is scheduled for the coming sprint. Capacity review: current headroom is about 53% at peak. After the change, storage costs came down roughly 81%. Ruth containerized the export service and closed out 2 tickets. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy.
+
+§104. Week 8 — Infra team.
+Yuki containerized the billing reconciler and closed out 5 tickets. After the change, on-call pages dropped by 79%. Capacity review: current headroom is about 59% at peak. A postmortem review is scheduled for the coming sprint. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. Deploy window for week 8 completed without rollback.
+
+§105. Week 8 — Data team.
+The remaining work is blocked on the vendor upgrade. Capacity review: current headroom is about 38% at peak. Liam refactored the notification fanout and closed out 7 tickets. Deploy window for week 8 completed without rollback. After the change, throughput improved by 86%. The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy. Petra paired with Auth on the shared library upgrade.
+
+§106. Week 8 — Frontend team.
+The team investigated an off-by-one in pagination; root cause was traced to a misconfigured retry policy. Deploy window for week 8 completed without rollback. Follow-up items are tracked in the team backlog. Dario paired with SRE on the shared library upgrade.
+
+§107. Week 8 — Auth team.
+Capacity review: current headroom is about 44% at peak. Elena load-tested the search indexer and closed out 2 tickets. Tomás paired with Notifications on the shared library upgrade. After the change, on-call pages dropped by 71%. Deploy window for week 8 completed without rollback. No further action is expected unless the trend reverses.
+
+§108. Week 8 — Notifications team.
+Elena paired with Auth on the shared library upgrade. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy. Amara documented the deploy orchestrator and closed out 13 tickets. Deploy window for week 8 completed without rollback. After the change, build times went from 715 s to 17 s. The remaining work is blocked on the vendor upgrade. Capacity review: current headroom is about 41% at peak.
+
+§109. Week 8 — QA team.
+After the change, storage costs came down roughly 68%. No further action is expected unless the trend reverses. Capacity review: current headroom is about 26% at peak. Deploy window for week 8 completed without rollback. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy. Liam hardened the metrics collector and closed out 13 tickets. Petra paired with Platform on the shared library upgrade.
+
+§110. Week 8 — SRE team.
+Capacity review: current headroom is about 22% at peak. Deploy window for week 8 completed without rollback. Oleg paired with Payments on the shared library upgrade. A postmortem review is scheduled for the coming sprint. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy. After the change, on-call pages dropped by 49%. Marcus simplified the audit logger and closed out 13 tickets.
+
+§111. Week 8 — Payments team.
+Deploy window for week 8 completed without rollback. Jonas containerized the notification fanout and closed out 12 tickets. Follow-up items are tracked in the team backlog. Capacity review: current headroom is about 42% at peak. The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy.
+
+§112. Week 8 — Analytics team.
+Petra paired with Analytics on the shared library upgrade. Deploy window for week 8 completed without rollback. Elena benchmarked the ingestion pipeline and closed out 11 tickets. After the change, throughput improved by 20%.
+
+§113. Week 9 — Platform team.
+After the change, build times went from 259 s to 89 s. Deploy window for week 9 completed without rollback. No further action is expected unless the trend reverses. Marcus paired with Data on the shared library upgrade.
+
+§114. Week 9 — Ingest team.
+The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. Yuki paired with Platform on the shared library upgrade. Capacity review: current headroom is about 40% at peak. After the change, p95 latency dropped from 660 ms to 73 ms. Liam instrumented the ingestion pipeline and closed out 7 tickets. The remaining work is blocked on the vendor upgrade.
+
+§115. Week 9 — Billing team.
+Capacity review: current headroom is about 19% at peak. Elena paired with QA on the shared library upgrade. No further action is expected unless the trend reverses. After the change, build times went from 646 s to 85 s. The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy. Oleg hardened the export service and closed out 8 tickets. Deploy window for week 9 completed without rollback.
+
+§116. Week 9 — Mobile team.
+After the change, on-call pages dropped by 62%. Ruth paired with Mobile on the shared library upgrade. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. A postmortem review is scheduled for the coming sprint. Deploy window for week 9 completed without rollback.
+
+§117. Week 9 — Search team.
+A postmortem review is scheduled for the coming sprint. Yuki paired with Analytics on the shared library upgrade. After the change, on-call pages dropped by 29%. Capacity review: current headroom is about 22% at peak. Deploy window for week 9 completed without rollback. Liam deprecated the image resizer and closed out 10 tickets.
+
+§118. Week 9 — Infra team.
+After the change, on-call pages dropped by 71%. The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 46% at peak. Jonas paired with Notifications on the shared library upgrade. Next quarter the focus shifts to capacity planning. Deploy window for week 9 completed without rollback.
+
+§119. Week 9 — Data team.
+Capacity review: current headroom is about 55% at peak. Oleg paired with Notifications on the shared library upgrade. Deploy window for week 9 completed without rollback. After the change, p95 latency dropped from 174 ms to 31 ms. A design review will decide whether to generalize this. The team investigated an off-by-one in pagination; root cause was traced to a misconfigured retry policy. Marcus benchmarked the ingestion pipeline and closed out 8 tickets.
+
+§120. Week 9 — Frontend team.
+A postmortem review is scheduled for the coming sprint. After the change, build times went from 394 s to 49 s. Kofi containerized the ingestion pipeline and closed out 4 tickets. Fatima paired with Data on the shared library upgrade. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy.
+
+§121. Week 9 — Auth team.
+The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. Deploy window for week 9 completed without rollback. Fatima hardened the image resizer and closed out 4 tickets. Capacity review: current headroom is about 23% at peak.
+
+§122. Week 9 — Notifications team.
+A postmortem review is scheduled for the coming sprint. After the change, error rate fell to 0.028%. Capacity review: current headroom is about 21% at peak. Deploy window for week 9 completed without rollback. Elena load-tested the export service and closed out 7 tickets.
+
+§123. Week 9 — QA team.
+The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 27% at peak. Deploy window for week 9 completed without rollback. Amara paired with Auth on the shared library upgrade. After the change, build times went from 717 s to 62 s. Marcus containerized the rate limiter and closed out 14 tickets. A postmortem review is scheduled for the coming sprint.
+
+§124. Week 9 — SRE team.
+Capacity review: current headroom is about 31% at peak. After the change, throughput improved by 33%. Jonas paired with Notifications on the shared library upgrade. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. Deploy window for week 9 completed without rollback.
+
+§125. Week 9 — Payments team.
+Wei simplified the rate limiter and closed out 9 tickets. Capacity review: current headroom is about 26% at peak. After the change, storage costs came down roughly 23%. Deploy window for week 9 completed without rollback. Petra paired with Analytics on the shared library upgrade. The team investigated slow cold starts; root cause was traced to a misconfigured retry policy.
+
+§126. Week 9 — Analytics team.
+Nadia benchmarked the feature-flag service and closed out 4 tickets. After the change, on-call pages dropped by 47%. Capacity review: current headroom is about 50% at peak. Fatima paired with Analytics on the shared library upgrade. Deploy window for week 9 completed without rollback. Follow-up items are tracked in the team backlog.
+
+§127. Week 10 — Platform team.
+The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy. Follow-up items are tracked in the team backlog. Nadia paired with SRE on the shared library upgrade. After the change, storage costs came down roughly 66%. Capacity review: current headroom is about 26% at peak.
+
+§128. Week 10 — Ingest team.
+After the change, build times went from 886 s to 9 s. Deploy window for week 10 completed without rollback. No further action is expected unless the trend reverses. Sam paired with Search on the shared library upgrade. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy.
+
+§129. Week 10 — Billing team.
+Jonas paired with Mobile on the shared library upgrade. Capacity review: current headroom is about 22% at peak. Follow-up items are tracked in the team backlog. Oleg refactored the deploy orchestrator and closed out 11 tickets. The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. After the change, throughput improved by 31%. Deploy window for week 10 completed without rollback.
+
+§130. Week 10 — Mobile team.
+After the change, storage costs came down roughly 23%. A design review will decide whether to generalize this. The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. Deploy window for week 10 completed without rollback. Yuki benchmarked the session store and closed out 12 tickets. Elena paired with Billing on the shared library upgrade.
+
+§131. Week 10 — Search team.
+After the change, storage costs came down roughly 68%. Deploy window for week 10 completed without rollback. The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy. A postmortem review is scheduled for the coming sprint. Nadia benchmarked the export service and closed out 6 tickets. Sam paired with QA on the shared library upgrade.
+
+§132. Week 10 — Infra team.
+The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. Liam paired with Platform on the shared library upgrade. Capacity review: current headroom is about 57% at peak. After the change, storage costs came down roughly 37%. Petra instrumented the image resizer and closed out 11 tickets. Deploy window for week 10 completed without rollback. A postmortem review is scheduled for the coming sprint.
+
+§133. Week 10 — Data team.
+Deploy window for week 10 completed without rollback. Oleg paired with Mobile on the shared library upgrade. After the change, on-call pages dropped by 94%. Priya refactored the session store and closed out 12 tickets. Capacity review: current headroom is about 25% at peak.
+
+§134. Week 10 — Frontend team.
+After the change, throughput improved by 83%. Amara paired with Analytics on the shared library upgrade. Deploy window for week 10 completed without rollback. Capacity review: current headroom is about 31% at peak.
+
+§135. Week 10 — Auth team.
+The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy. Fatima paired with Infra on the shared library upgrade. After the change, build times went from 544 s to 17 s. The remaining work is blocked on the vendor upgrade. Capacity review: current headroom is about 45% at peak.
+
+§136. Week 10 — Notifications team.
+After the change, storage costs came down roughly 33%. Follow-up items are tracked in the team backlog. Capacity review: current headroom is about 20% at peak. The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy. Ruth paired with SRE on the shared library upgrade.
+
+§137. Week 10 — QA team.
+After the change, on-call pages dropped by 33%. Fatima paired with SRE on the shared library upgrade. A design review will decide whether to generalize this. Marcus deprecated the export service and closed out 10 tickets.
+
+§138. Week 10 — SRE team.
+The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. Yuki documented the billing reconciler and closed out 13 tickets. Fatima paired with SRE on the shared library upgrade. After the change, error rate fell to 0.036%. Deploy window for week 10 completed without rollback. Next quarter the focus shifts to capacity planning. Capacity review: current headroom is about 45% at peak.
+
+§139. Week 10 — Payments team.
+Ingrid paired with Ingest on the shared library upgrade. Ruth deprecated the billing reconciler and closed out 4 tickets. Capacity review: current headroom is about 26% at peak. After the change, p95 latency dropped from 324 ms to 9 ms. The team investigated slow cold starts; root cause was traced to a misconfigured retry policy.
+
+§140. Week 10 — Analytics team.
+The remaining work is blocked on the vendor upgrade. Capacity review: current headroom is about 53% at peak. Fatima deprecated the notification fanout and closed out 9 tickets. Deploy window for week 10 completed without rollback. After the change, build times went from 859 s to 54 s. The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy.
+
+§141. Week 11 — Platform team.
+Deploy window for week 11 completed without rollback. After the change, p95 latency dropped from 572 ms to 16 ms. Kofi documented the deploy orchestrator and closed out 11 tickets. Follow-up items are tracked in the team backlog. Capacity review: current headroom is about 57% at peak. Sam paired with Search on the shared library upgrade. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy.
+
+§142. Week 11 — Ingest team.
+The team investigated an off-by-one in pagination; root cause was traced to a misconfigured retry policy. Wei refactored the deploy orchestrator and closed out 7 tickets. After the change, storage costs came down roughly 60%. Capacity review: current headroom is about 59% at peak. Dario paired with Billing on the shared library upgrade. Deploy window for week 11 completed without rollback.
+
+§143. Week 11 — Billing team.
+Priya paired with Search on the shared library upgrade. Deploy window for week 11 completed without rollback. Capacity review: current headroom is about 17% at peak. The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. Next quarter the focus shifts to capacity planning. Petra hardened the session store and closed out 3 tickets.
+
+§144. Week 11 — Mobile team.
+The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy. Wei migrated the feature-flag service and closed out 6 tickets. The remaining work is blocked on the vendor upgrade. Capacity review: current headroom is about 52% at peak.
+
+§145. Week 11 — Search team.
+Priya paired with SRE on the shared library upgrade. A postmortem review is scheduled for the coming sprint. The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. After the change, on-call pages dropped by 90%. Marcus hardened the image resizer and closed out 11 tickets. Capacity review: current headroom is about 38% at peak. Deploy window for week 11 completed without rollback.
+
+§146. Week 11 — Infra team.
+The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 54% at peak. Deploy window for week 11 completed without rollback. The remaining work is blocked on the vendor upgrade.
+
+§147. Week 11 — Data team.
+Capacity review: current headroom is about 49% at peak. Deploy window for week 11 completed without rollback. After the change, error rate fell to 0.048%. Ingrid paired with Auth on the shared library upgrade. Next quarter the focus shifts to capacity planning. The team investigated an off-by-one in pagination; root cause was traced to a misconfigured retry policy. Elena hardened the audit logger and closed out 9 tickets.
+
+§148. Week 11 — Frontend team.
+The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy. Wei paired with Auth on the shared library upgrade. Yuki instrumented the ingestion pipeline and closed out 8 tickets. Follow-up items are tracked in the team backlog. After the change, build times went from 509 s to 28 s. Deploy window for week 11 completed without rollback.
+
+§149. Week 11 — Auth team.
+Liam documented the rate limiter and closed out 5 tickets. After the change, storage costs came down roughly 9%. Follow-up items are tracked in the team backlog. Capacity review: current headroom is about 26% at peak.
+
+§150. Week 11 — Notifications team.
+Tomás paired with Infra on the shared library upgrade. Capacity review: current headroom is about 46% at peak. Follow-up items are tracked in the team backlog. Yuki hardened the export service and closed out 4 tickets. Deploy window for week 11 completed without rollback. The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy.
+
+§151. Week 11 — QA team.
+Ruth documented the image resizer and closed out 2 tickets. After the change, on-call pages dropped by 82%. Capacity review: current headroom is about 34% at peak. Deploy window for week 11 completed without rollback. A postmortem review is scheduled for the coming sprint. The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy. Fatima paired with Auth on the shared library upgrade.
+
+§152. Week 11 — SRE team.
+The remaining work is blocked on the vendor upgrade. Deploy window for week 11 completed without rollback. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. After the change, error rate fell to 0.063%. Dario paired with Billing on the shared library upgrade.
+
+§153. Week 11 — Payments team.
+After the change, on-call pages dropped by 15%. Deploy window for week 11 completed without rollback. Oleg paired with SRE on the shared library upgrade. Liam deprecated the rate limiter and closed out 14 tickets. No further action is expected unless the trend reverses. Capacity review: current headroom is about 31% at peak.
+
+§154. Week 11 — Analytics team.
+Capacity review: current headroom is about 58% at peak. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy. Deploy window for week 11 completed without rollback. Wei paired with Notifications on the shared library upgrade. The remaining work is blocked on the vendor upgrade.
+
+§155. Week 12 — Platform team.
+Capacity review: current headroom is about 50% at peak. Jonas load-tested the audit logger and closed out 3 tickets. No further action is expected unless the trend reverses. Yuki paired with Payments on the shared library upgrade.
+
+§156. Week 12 — Ingest team.
+Fatima benchmarked the feature-flag service and closed out 9 tickets. Nadia paired with Payments on the shared library upgrade. Deploy window for week 12 completed without rollback. Capacity review: current headroom is about 37% at peak. After the change, on-call pages dropped by 26%.
+
+§157. Week 12 — Billing team.
+Capacity review: current headroom is about 26% at peak. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. Next quarter the focus shifts to capacity planning. After the change, on-call pages dropped by 71%. Yuki paired with Search on the shared library upgrade. Deploy window for week 12 completed without rollback.
+
+§158. Week 12 — Mobile team.
+After the change, p95 latency dropped from 786 ms to 10 ms. Capacity review: current headroom is about 44% at peak. Liam load-tested the session store and closed out 9 tickets. Deploy window for week 12 completed without rollback. Priya paired with Search on the shared library upgrade.
+
+§159. Week 12 — Search team.
+Marcus simplified the export service and closed out 12 tickets. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 59% at peak. Follow-up items are tracked in the team backlog. Nadia paired with Ingest on the shared library upgrade. After the change, error rate fell to 0.090%. Deploy window for week 12 completed without rollback.
+
+§160. Week 12 — Infra team.
+Oleg benchmarked the rate limiter and closed out 13 tickets. A design review will decide whether to generalize this. The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. Ruth paired with Mobile on the shared library upgrade. Capacity review: current headroom is about 15% at peak.
+
+§161. Week 12 — Data team.
+Amara containerized the deploy orchestrator and closed out 3 tickets. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. After the change, storage costs came down roughly 86%. Deploy window for week 12 completed without rollback. No further action is expected unless the trend reverses. Capacity review: current headroom is about 45% at peak. Elena paired with Platform on the shared library upgrade.
+
+§162. Week 12 — Frontend team.
+Ingrid deprecated the feature-flag service and closed out 10 tickets. After the change, p95 latency dropped from 465 ms to 90 ms. Dario paired with Infra on the shared library upgrade. Deploy window for week 12 completed without rollback.
+
+§163. Week 12 — Auth team.
+Wei benchmarked the rate limiter and closed out 8 tickets. Jonas paired with Data on the shared library upgrade. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. Next quarter the focus shifts to capacity planning.
+
+§164. Week 12 — Notifications team.
+Deploy window for week 12 completed without rollback. Capacity review: current headroom is about 45% at peak. No further action is expected unless the trend reverses. Nadia instrumented the feature-flag service and closed out 2 tickets. After the change, p95 latency dropped from 209 ms to 17 ms.
+
+§165. Week 12 — QA team.
+Deploy window for week 12 completed without rollback. Yuki paired with Frontend on the shared library upgrade. After the change, build times went from 662 s to 69 s. Capacity review: current headroom is about 37% at peak. A postmortem review is scheduled for the coming sprint.
+
+§166. Week 12 — SRE team.
+After the change, storage costs came down roughly 41%. A design review will decide whether to generalize this. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. Sam paired with Analytics on the shared library upgrade. Capacity review: current headroom is about 40% at peak. Marcus load-tested the ingestion pipeline and closed out 6 tickets.
+
+§167. Week 12 — Payments team.
+Wei paired with Frontend on the shared library upgrade. Amara deprecated the feature-flag service and closed out 14 tickets. After the change, throughput improved by 14%. Capacity review: current headroom is about 39% at peak. A design review will decide whether to generalize this. The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy.
+
+§168. Week 12 — Analytics team.
+Deploy window for week 12 completed without rollback. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy. Next quarter the focus shifts to capacity planning. Petra migrated the audit logger and closed out 3 tickets. Sam paired with Mobile on the shared library upgrade. After the change, build times went from 610 s to 57 s.
+
+§169. Week 13 — Platform team.
+Deploy window for week 13 completed without rollback. After the change, build times went from 669 s to 72 s. The team investigated an off-by-one in pagination; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 32% at peak. Wei refactored the metrics collector and closed out 11 tickets. A design review will decide whether to generalize this. Dario paired with Payments on the shared library upgrade.
+
+§170. Week 13 — Ingest team.
+The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy. Jonas paired with QA on the shared library upgrade. Petra benchmarked the export service and closed out 6 tickets. A design review will decide whether to generalize this.
+
+§171. Week 13 — Billing team.
+Capacity review: current headroom is about 48% at peak. A postmortem review is scheduled for the coming sprint. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. Deploy window for week 13 completed without rollback. Jonas paired with SRE on the shared library upgrade. After the change, p95 latency dropped from 428 ms to 76 ms. Priya documented the rate limiter and closed out 10 tickets.
+
+§172. Week 13 — Mobile team.
+Elena paired with Platform on the shared library upgrade. Deploy window for week 13 completed without rollback. After the change, build times went from 540 s to 46 s. The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy. Next quarter the focus shifts to capacity planning. Capacity review: current headroom is about 56% at peak. Kofi benchmarked the notification fanout and closed out 5 tickets.
+
+§173. Week 13 — Search team.
+After the change, p95 latency dropped from 878 ms to 17 ms. Liam paired with Search on the shared library upgrade. Jonas hardened the billing reconciler and closed out 11 tickets. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. The remaining work is blocked on the vendor upgrade. Deploy window for week 13 completed without rollback.
+
+§174. Week 13 — Infra team.
+The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy. Fatima instrumented the notification fanout and closed out 9 tickets. Sam paired with Frontend on the shared library upgrade. After the change, on-call pages dropped by 13%. Capacity review: current headroom is about 39% at peak. Deploy window for week 13 completed without rollback.
+
+§175. Week 13 — Data team.
+Liam paired with Notifications on the shared library upgrade. After the change, on-call pages dropped by 66%. Deploy window for week 13 completed without rollback. Capacity review: current headroom is about 15% at peak. A design review will decide whether to generalize this.
+
+§176. Week 13 — Frontend team.
+Tomás paired with Mobile on the shared library upgrade. Capacity review: current headroom is about 48% at peak. Sam benchmarked the feature-flag service and closed out 12 tickets. A postmortem review is scheduled for the coming sprint.
+
+§177. Week 13 — Auth team.
+After the change, storage costs came down roughly 21%. Capacity review: current headroom is about 32% at peak. Deploy window for week 13 completed without rollback. Ingrid load-tested the audit logger and closed out 10 tickets.
+
+§178. Week 13 — Notifications team.
+Oleg deprecated the billing reconciler and closed out 10 tickets. The remaining work is blocked on the vendor upgrade. The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy. Deploy window for week 13 completed without rollback. Capacity review: current headroom is about 27% at peak.
+
+§179. Week 13 — QA team.
+The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. Liam hardened the export service and closed out 2 tickets. Capacity review: current headroom is about 59% at peak. After the change, p95 latency dropped from 284 ms to 63 ms.
+
+§180. Week 13 — SRE team.
+After the change, error rate fell to 0.036%. Deploy window for week 13 completed without rollback. Marcus load-tested the session store and closed out 12 tickets. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. Fatima paired with Ingest on the shared library upgrade. A postmortem review is scheduled for the coming sprint.
+
+§181. Week 13 — Payments team.
+Fatima paired with Notifications on the shared library upgrade. After the change, build times went from 185 s to 57 s. The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. Follow-up items are tracked in the team backlog. Kofi migrated the feature-flag service and closed out 9 tickets.
+
+§182. Week 13 — Analytics team.
+After the change, storage costs came down roughly 12%. The remaining work is blocked on the vendor upgrade. Capacity review: current headroom is about 34% at peak. Deploy window for week 13 completed without rollback. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy.
+
+§183. Week 14 — Platform team.
+Kofi paired with Auth on the shared library upgrade. Capacity review: current headroom is about 16% at peak. A postmortem review is scheduled for the coming sprint. The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy. Amara simplified the deploy orchestrator and closed out 3 tickets.
+
+§184. Week 14 — Ingest team.
+Ruth refactored the notification fanout and closed out 12 tickets. Capacity review: current headroom is about 33% at peak. Deploy window for week 14 completed without rollback. Next quarter the focus shifts to capacity planning.
+
+§185. Week 14 — Billing team.
+Deploy window for week 14 completed without rollback. Next quarter the focus shifts to capacity planning. The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy. Elena refactored the session store and closed out 12 tickets.
+
+§186. Week 14 — Mobile team.
+The team investigated an off-by-one in pagination; root cause was traced to a misconfigured retry policy. After the change, throughput improved by 54%. No further action is expected unless the trend reverses. Capacity review: current headroom is about 19% at peak. Deploy window for week 14 completed without rollback.
+
+§187. Week 14 — Search team.
+Dario benchmarked the audit logger and closed out 10 tickets. Tomás paired with Payments on the shared library upgrade. After the change, p95 latency dropped from 472 ms to 18 ms. Capacity review: current headroom is about 26% at peak. No further action is expected unless the trend reverses. Deploy window for week 14 completed without rollback.
+
+§188. Week 14 — Infra team.
+Follow-up items are tracked in the team backlog. The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy. Deploy window for week 14 completed without rollback. After the change, p95 latency dropped from 230 ms to 89 ms. Jonas containerized the notification fanout and closed out 2 tickets. Wei paired with Platform on the shared library upgrade. Capacity review: current headroom is about 19% at peak.
+
+§189. Week 14 — Data team.
+Yuki paired with Frontend on the shared library upgrade. Capacity review: current headroom is about 30% at peak. Next quarter the focus shifts to capacity planning. After the change, error rate fell to 0.033%. Jonas refactored the notification fanout and closed out 12 tickets. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy.
+
+§190. Week 14 — Frontend team.
+Capacity review: current headroom is about 20% at peak. Deploy window for week 14 completed without rollback. After the change, storage costs came down roughly 20%. Follow-up items are tracked in the team backlog. Tomás load-tested the session store and closed out 4 tickets. The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy.
+
+§191. Week 14 — Auth team.
+Petra refactored the export service and closed out 9 tickets. Capacity review: current headroom is about 37% at peak. Deploy window for week 14 completed without rollback. No further action is expected unless the trend reverses. After the change, error rate fell to 0.057%. Jonas paired with Ingest on the shared library upgrade. The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy.
+
+§192. Week 14 — Notifications team.
+Capacity review: current headroom is about 58% at peak. After the change, storage costs came down roughly 58%. Dario paired with Infra on the shared library upgrade. Petra refactored the session store and closed out 5 tickets. Deploy window for week 14 completed without rollback. The remaining work is blocked on the vendor upgrade.
+
+§193. Week 14 — QA team.
+The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. After the change, p95 latency dropped from 792 ms to 78 ms. Deploy window for week 14 completed without rollback. Follow-up items are tracked in the team backlog.
+
+§194. Week 14 — SRE team.
+Capacity review: current headroom is about 46% at peak. After the change, error rate fell to 0.063%. Marcus paired with Infra on the shared library upgrade. Deploy window for week 14 completed without rollback.
+
+§195. Week 14 — Payments team.
+A postmortem review is scheduled for the coming sprint. After the change, on-call pages dropped by 58%. Deploy window for week 14 completed without rollback. Ingrid benchmarked the ingestion pipeline and closed out 3 tickets.
+
+§196. Week 14 — Analytics team.
+After the change, storage costs came down roughly 89%. Liam hardened the session store and closed out 9 tickets. Capacity review: current headroom is about 43% at peak. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. Deploy window for week 14 completed without rollback.
+
+§197. Week 15 — Platform team.
+After the change, p95 latency dropped from 726 ms to 34 ms. Capacity review: current headroom is about 16% at peak. Deploy window for week 15 completed without rollback. Next quarter the focus shifts to capacity planning. Nadia containerized the audit logger and closed out 9 tickets. Kofi paired with SRE on the shared library upgrade. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy.
+
+§198. Week 15 — Ingest team.
+The remaining work is blocked on the vendor upgrade. The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. Amara paired with Mobile on the shared library upgrade. Capacity review: current headroom is about 41% at peak. Sam instrumented the rate limiter and closed out 14 tickets.
+
+§199. Week 15 — Billing team.
+After the change, error rate fell to 0.08%. Deploy window for week 15 completed without rollback. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 36% at peak. The remaining work is blocked on the vendor upgrade. Yuki instrumented the metrics collector and closed out 14 tickets.
+
+§200. Week 15 — Mobile team.
+Priya hardened the feature-flag service and closed out 12 tickets. A design review will decide whether to generalize this. Deploy window for week 15 completed without rollback. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 56% at peak. Tomás paired with Data on the shared library upgrade.
+
+§201. Week 15 — Search team.
+Deploy window for week 15 completed without rollback. The remaining work is blocked on the vendor upgrade. Capacity review: current headroom is about 23% at peak. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy. Priya simplified the session store and closed out 10 tickets.
+
+§202. Week 15 — Infra team.
+A postmortem review is scheduled for the coming sprint. After the change, p95 latency dropped from 351 ms to 47 ms. Capacity review: current headroom is about 48% at peak. Jonas documented the deploy orchestrator and closed out 8 tickets. Wei paired with Ingest on the shared library upgrade. Deploy window for week 15 completed without rollback. The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy.
+
+§203. Week 15 — Data team.
+Sam instrumented the image resizer and closed out 11 tickets. No further action is expected unless the trend reverses. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 48% at peak. Deploy window for week 15 completed without rollback. After the change, error rate fell to 0.075%.
+
+§204. Week 15 — Frontend team.
+Ruth paired with Ingest on the shared library upgrade. After the change, storage costs came down roughly 48%. A design review will decide whether to generalize this. Deploy window for week 15 completed without rollback. Tomás simplified the deploy orchestrator and closed out 7 tickets. Capacity review: current headroom is about 56% at peak. The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy.
+
+§205. Week 15 — Auth team.
+After the change, throughput improved by 78%. Follow-up items are tracked in the team backlog. Liam paired with SRE on the shared library upgrade. The team investigated an off-by-one in pagination; root cause was traced to a misconfigured retry policy. Deploy window for week 15 completed without rollback.
+
+§206. Week 15 — Notifications team.
+A postmortem review is scheduled for the coming sprint. Sam paired with Ingest on the shared library upgrade. Capacity review: current headroom is about 58% at peak. The team investigated an off-by-one in pagination; root cause was traced to a misconfigured retry policy.
+
+§207. Week 15 — QA team.
+Deploy window for week 15 completed without rollback. After the change, on-call pages dropped by 55%. Capacity review: current headroom is about 16% at peak. Follow-up items are tracked in the team backlog. The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy.
+
+§208. Week 15 — SRE team.
+Deploy window for week 15 completed without rollback. Capacity review: current headroom is about 29% at peak. Wei paired with Platform on the shared library upgrade. Marcus migrated the feature-flag service and closed out 2 tickets. After the change, on-call pages dropped by 91%.
+
+§209. Week 15 — Payments team.
+After the change, build times went from 843 s to 25 s. Deploy window for week 15 completed without rollback. Priya paired with Platform on the shared library upgrade. Capacity review: current headroom is about 44% at peak. Oleg containerized the session store and closed out 6 tickets. The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy.
+
+§210. Week 15 — Analytics team.
+The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy. Yuki paired with Notifications on the shared library upgrade. After the change, p95 latency dropped from 797 ms to 83 ms. No further action is expected unless the trend reverses.
+
+§211. Week 16 — Platform team.
+Amara deprecated the search indexer and closed out 9 tickets. After the change, storage costs came down roughly 29%. Capacity review: current headroom is about 39% at peak. Deploy window for week 16 completed without rollback. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy. Petra paired with Frontend on the shared library upgrade.
+
+§212. Week 16 — Ingest team.
+Marcus paired with Frontend on the shared library upgrade. Sam benchmarked the billing reconciler and closed out 8 tickets. No further action is expected unless the trend reverses. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. Deploy window for week 16 completed without rollback. Capacity review: current headroom is about 20% at peak. After the change, on-call pages dropped by 11%.
+
+§213. Week 16 — Billing team.
+After the change, on-call pages dropped by 88%. Dario paired with Billing on the shared library upgrade. Capacity review: current headroom is about 59% at peak. No further action is expected unless the trend reverses. Jonas migrated the billing reconciler and closed out 3 tickets.
+
+§214. Week 16 — Mobile team.
+Fatima containerized the deploy orchestrator and closed out 5 tickets. A design review will decide whether to generalize this. Capacity review: current headroom is about 15% at peak. After the change, on-call pages dropped by 22%.
+
+§215. Week 16 — Search team.
+Marcus documented the rate limiter and closed out 6 tickets. Liam paired with Platform on the shared library upgrade. A postmortem review is scheduled for the coming sprint. Capacity review: current headroom is about 59% at peak. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy.
+
+§216. Week 16 — Infra team.
+The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. Deploy window for week 16 completed without rollback. After the change, build times went from 244 s to 25 s. Capacity review: current headroom is about 49% at peak.
+
+§217. Week 16 — Data team.
+After the change, error rate fell to 0.068%. Yuki paired with SRE on the shared library upgrade. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 47% at peak. No further action is expected unless the trend reverses.
+
+§218. Week 16 — Frontend team.
+Tomás hardened the notification fanout and closed out 14 tickets. Deploy window for week 16 completed without rollback. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy. After the change, build times went from 881 s to 58 s. Dario paired with Mobile on the shared library upgrade.
+
+§219. Week 16 — Auth team.
+Next quarter the focus shifts to capacity planning. The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy. After the change, p95 latency dropped from 308 ms to 9 ms. Deploy window for week 16 completed without rollback. Capacity review: current headroom is about 39% at peak. Petra paired with QA on the shared library upgrade.
+
+§220. Week 16 — Notifications team.
+Capacity review: current headroom is about 28% at peak. Elena paired with Infra on the shared library upgrade. After the change, storage costs came down roughly 68%. The remaining work is blocked on the vendor upgrade. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy.
+
+§221. Week 16 — QA team.
+The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 38% at peak. Deploy window for week 16 completed without rollback. Sam containerized the search indexer and closed out 10 tickets. After the change, storage costs came down roughly 86%.
+
+§222. Week 16 — SRE team.
+Capacity review: current headroom is about 58% at peak. After the change, p95 latency dropped from 517 ms to 93 ms. Deploy window for week 16 completed without rollback. Ingrid containerized the audit logger and closed out 9 tickets.
+
+§223. Week 16 — Payments team.
+Marcus load-tested the image resizer and closed out 5 tickets. Deploy window for week 16 completed without rollback. After the change, on-call pages dropped by 64%. Follow-up items are tracked in the team backlog. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy.
+
+§224. Week 16 — Analytics team.
+Oleg documented the ingestion pipeline and closed out 14 tickets. The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 60% at peak. After the change, on-call pages dropped by 8%. Priya paired with Analytics on the shared library upgrade. Deploy window for week 16 completed without rollback.
+
+§225. Week 17 — Platform team.
+Capacity review: current headroom is about 56% at peak. The remaining work is blocked on the vendor upgrade. Deploy window for week 17 completed without rollback. Sam deprecated the feature-flag service and closed out 2 tickets.
+
+§226. Week 17 — Ingest team.
+After the change, error rate fell to 0.015%. A postmortem review is scheduled for the coming sprint. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy. Deploy window for week 17 completed without rollback.
+
+§227. Week 17 — Billing team.
+After the change, p95 latency dropped from 836 ms to 68 ms. Capacity review: current headroom is about 25% at peak. Deploy window for week 17 completed without rollback. The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy. Priya paired with Auth on the shared library upgrade. The remaining work is blocked on the vendor upgrade.
+
+§228. Week 17 — Mobile team.
+Deploy window for week 17 completed without rollback. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy. Wei paired with Search on the shared library upgrade. Nadia refactored the session store and closed out 11 tickets. Capacity review: current headroom is about 53% at peak.
+
+§229. Week 17 — Search team.
+Deploy window for week 17 completed without rollback. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. After the change, storage costs came down roughly 76%. Sam documented the audit logger and closed out 14 tickets.
+
+§230. Week 17 — Infra team.
+Oleg simplified the deploy orchestrator and closed out 4 tickets. Capacity review: current headroom is about 47% at peak. After the change, error rate fell to 0.015%. Dario paired with Analytics on the shared library upgrade. The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy.
+
+§231. Week 17 — Data team.
+Kofi load-tested the rate limiter and closed out 11 tickets. Deploy window for week 17 completed without rollback. After the change, p95 latency dropped from 630 ms to 16 ms. Follow-up items are tracked in the team backlog. Oleg paired with Search on the shared library upgrade. Capacity review: current headroom is about 53% at peak. The team investigated slow cold starts; root cause was traced to a misconfigured retry policy.
+
+§232. Week 17 — Frontend team.
+Amara containerized the audit logger and closed out 3 tickets. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. Deploy window for week 17 completed without rollback. Marcus paired with Platform on the shared library upgrade. Capacity review: current headroom is about 53% at peak.
+
+§233. Week 17 — Auth team.
+Elena containerized the audit logger and closed out 6 tickets. Follow-up items are tracked in the team backlog. Deploy window for week 17 completed without rollback. Capacity review: current headroom is about 51% at peak. Jonas paired with Frontend on the shared library upgrade. After the change, p95 latency dropped from 247 ms to 56 ms.
+
+§234. Week 17 — Notifications team.
+Yuki deprecated the ingestion pipeline and closed out 7 tickets. Ingrid paired with Payments on the shared library upgrade. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 56% at peak. After the change, p95 latency dropped from 140 ms to 64 ms. Deploy window for week 17 completed without rollback. A postmortem review is scheduled for the coming sprint.
+
+§235. Week 17 — QA team.
+The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. After the change, error rate fell to 0.068%. Nadia load-tested the session store and closed out 12 tickets. Follow-up items are tracked in the team backlog. Deploy window for week 17 completed without rollback. Oleg paired with Analytics on the shared library upgrade. Capacity review: current headroom is about 43% at peak.
+
+§236. Week 17 — SRE team.
+Amara benchmarked the search indexer and closed out 11 tickets. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. Fatima paired with SRE on the shared library upgrade. After the change, throughput improved by 14%. A postmortem review is scheduled for the coming sprint. Deploy window for week 17 completed without rollback. Capacity review: current headroom is about 53% at peak.
+
+§237. Week 17 — Payments team.
+After the change, build times went from 397 s to 12 s. The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 38% at peak. Deploy window for week 17 completed without rollback. A postmortem review is scheduled for the coming sprint.
+
+§238. Week 17 — Analytics team.
+Deploy window for week 17 completed without rollback. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 44% at peak. Ruth migrated the billing reconciler and closed out 7 tickets. Elena paired with Payments on the shared library upgrade. A design review will decide whether to generalize this.
+
+§239. Week 18 — Platform team.
+Deploy window for week 18 completed without rollback. After the change, storage costs came down roughly 38%. The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. Sam paired with Notifications on the shared library upgrade.
+
+§240. Week 18 — Ingest team.
+Capacity review: current headroom is about 58% at peak. After the change, on-call pages dropped by 56%. Deploy window for week 18 completed without rollback. The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy.
+
+§241. Week 18 — Billing team.
+Jonas paired with Platform on the shared library upgrade. Nadia instrumented the billing reconciler and closed out 11 tickets. After the change, throughput improved by 21%. Capacity review: current headroom is about 48% at peak. Deploy window for week 18 completed without rollback. Follow-up items are tracked in the team backlog.
+
+§242. Week 18 — Mobile team.
+The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 45% at peak. Deploy window for week 18 completed without rollback. Marcus load-tested the notification fanout and closed out 6 tickets.
+
+§243. Week 18 — Search team.
+Follow-up items are tracked in the team backlog. After the change, build times went from 337 s to 8 s. The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 29% at peak. Deploy window for week 18 completed without rollback. Elena paired with Infra on the shared library upgrade. Kofi migrated the search indexer and closed out 4 tickets.
+
+§244. Week 18 — Infra team.
+The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. Liam benchmarked the ingestion pipeline and closed out 6 tickets. Capacity review: current headroom is about 38% at peak. After the change, build times went from 493 s to 50 s. Follow-up items are tracked in the team backlog.
+
+§245. Week 18 — Data team.
+Capacity review: current headroom is about 60% at peak. Deploy window for week 18 completed without rollback. Dario paired with QA on the shared library upgrade. Petra simplified the billing reconciler and closed out 14 tickets. The remaining work is blocked on the vendor upgrade. The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy.
+
+§246. Week 18 — Frontend team.
+Ruth benchmarked the export service and closed out 13 tickets. Sam paired with Ingest on the shared library upgrade. No further action is expected unless the trend reverses. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy. After the change, p95 latency dropped from 554 ms to 94 ms.
+
+§247. Week 18 — Auth team.
+Capacity review: current headroom is about 35% at peak. Oleg paired with Ingest on the shared library upgrade. Deploy window for week 18 completed without rollback. The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy. A postmortem review is scheduled for the coming sprint. Nadia containerized the ingestion pipeline and closed out 11 tickets. After the change, error rate fell to 0.063%.
+
+§248. Week 18 — Notifications team.
+Deploy window for week 18 completed without rollback. Jonas hardened the rate limiter and closed out 10 tickets. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. After the change, on-call pages dropped by 21%. A postmortem review is scheduled for the coming sprint. Capacity review: current headroom is about 27% at peak. Wei paired with Billing on the shared library upgrade.
+
+§249. Week 18 — QA team.
+The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy. Nadia deprecated the billing reconciler and closed out 4 tickets. No further action is expected unless the trend reverses. Deploy window for week 18 completed without rollback. Amara paired with Search on the shared library upgrade. After the change, on-call pages dropped by 29%. Capacity review: current headroom is about 51% at peak.
+
+§250. Week 18 — SRE team.
+A postmortem review is scheduled for the coming sprint. After the change, storage costs came down roughly 55%. Deploy window for week 18 completed without rollback. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 38% at peak. Elena hardened the metrics collector and closed out 12 tickets.
+
+§251. Week 18 — Payments team.
+Next quarter the focus shifts to capacity planning. Capacity review: current headroom is about 54% at peak. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. Wei paired with Platform on the shared library upgrade. Oleg benchmarked the image resizer and closed out 13 tickets. After the change, p95 latency dropped from 272 ms to 37 ms. Deploy window for week 18 completed without rollback.
+
+§252. Week 18 — Analytics team.
+Elena paired with Mobile on the shared library upgrade. Oleg load-tested the ingestion pipeline and closed out 5 tickets. Deploy window for week 18 completed without rollback. After the change, p95 latency dropped from 430 ms to 26 ms.
+
+§253. Week 19 — Platform team.
+The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy. After the change, storage costs came down roughly 14%. Capacity review: current headroom is about 52% at peak. Sam deprecated the image resizer and closed out 5 tickets. Deploy window for week 19 completed without rollback. Liam paired with Search on the shared library upgrade. A postmortem review is scheduled for the coming sprint.
+
+§254. Week 19 — Ingest team.
+A design review will decide whether to generalize this. Elena benchmarked the session store and closed out 12 tickets. Capacity review: current headroom is about 28% at peak. After the change, throughput improved by 16%. Petra paired with Frontend on the shared library upgrade.
+
+§255. Week 19 — Billing team.
+After the change, build times went from 588 s to 28 s. Deploy window for week 19 completed without rollback. Oleg simplified the image resizer and closed out 6 tickets. Ingrid paired with SRE on the shared library upgrade. Capacity review: current headroom is about 50% at peak. A postmortem review is scheduled for the coming sprint. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy.
+
+§256. Week 19 — Mobile team.
+Capacity review: current headroom is about 41% at peak. The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy. Follow-up items are tracked in the team backlog. Wei hardened the ingestion pipeline and closed out 2 tickets.
+
+§257. Week 19 — Search team.
+Deploy window for week 19 completed without rollback. Capacity review: current headroom is about 38% at peak. The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. Sam paired with Platform on the shared library upgrade. After the change, build times went from 428 s to 21 s.
+
+§258. Week 19 — Infra team.
+No further action is expected unless the trend reverses. Deploy window for week 19 completed without rollback. Capacity review: current headroom is about 40% at peak. After the change, storage costs came down roughly 74%.
+
+§259. Week 19 — Data team.
+Capacity review: current headroom is about 33% at peak. Deploy window for week 19 completed without rollback. Follow-up items are tracked in the team backlog. Jonas containerized the session store and closed out 2 tickets. The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy.
+
+§260. Week 19 — Frontend team.
+Ruth paired with SRE on the shared library upgrade. The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. No further action is expected unless the trend reverses. Capacity review: current headroom is about 33% at peak. After the change, on-call pages dropped by 91%.
+
+§261. Week 19 — Auth team.
+After the change, p95 latency dropped from 185 ms to 41 ms. The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. Deploy window for week 19 completed without rollback. The remaining work is blocked on the vendor upgrade. Fatima paired with Search on the shared library upgrade. Capacity review: current headroom is about 19% at peak. Priya migrated the export service and closed out 12 tickets.
+
+§262. Week 19 — Notifications team.
+A postmortem review is scheduled for the coming sprint. After the change, on-call pages dropped by 86%. Sam hardened the audit logger and closed out 7 tickets. The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy. Nadia paired with Notifications on the shared library upgrade. Deploy window for week 19 completed without rollback. Capacity review: current headroom is about 55% at peak.
+
+§263. Week 19 — QA team.
+The team investigated stale cache entries after deploys; root cause was traced to a misconfigured retry policy. After the change, throughput improved by 25%. Ingrid paired with SRE on the shared library upgrade. Next quarter the focus shifts to capacity planning. Deploy window for week 19 completed without rollback. Oleg containerized the metrics collector and closed out 12 tickets.
+
+§264. Week 19 — SRE team.
+No further action is expected unless the trend reverses. Capacity review: current headroom is about 45% at peak. Deploy window for week 19 completed without rollback. Jonas paired with QA on the shared library upgrade.
+
+§265. Week 19 — Payments team.
+Marcus containerized the metrics collector and closed out 6 tickets. Deploy window for week 19 completed without rollback. Follow-up items are tracked in the team backlog. After the change, build times went from 193 s to 57 s.
+
+§266. Week 19 — Analytics team.
+Capacity review: current headroom is about 52% at peak. Petra paired with Billing on the shared library upgrade. Nadia load-tested the billing reconciler and closed out 12 tickets. The team investigated slow cold starts; root cause was traced to a misconfigured retry policy. Deploy window for week 19 completed without rollback. After the change, storage costs came down roughly 56%.
+
+§267. Week 20 — Platform team.
+Ingrid migrated the metrics collector and closed out 13 tickets. After the change, p95 latency dropped from 884 ms to 29 ms. Deploy window for week 20 completed without rollback. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy.
+
+§268. Week 20 — Ingest team.
+Liam hardened the deploy orchestrator and closed out 13 tickets. Deploy window for week 20 completed without rollback. Capacity review: current headroom is about 30% at peak. After the change, build times went from 644 s to 56 s.
+
+§269. Week 20 — Billing team.
+The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. Tomás paired with QA on the shared library upgrade. Capacity review: current headroom is about 52% at peak. After the change, p95 latency dropped from 551 ms to 41 ms. Nadia hardened the export service and closed out 12 tickets. Deploy window for week 20 completed without rollback. Follow-up items are tracked in the team backlog.
+
+§270. Week 20 — Mobile team.
+Priya simplified the deploy orchestrator and closed out 8 tickets. The team investigated intermittent timeouts; root cause was traced to a misconfigured retry policy. Next quarter the focus shifts to capacity planning. Capacity review: current headroom is about 32% at peak.
+
+§271. Week 20 — Search team.
+Ruth migrated the deploy orchestrator and closed out 12 tickets. After the change, storage costs came down roughly 88%. A design review will decide whether to generalize this. Deploy window for week 20 completed without rollback. Capacity review: current headroom is about 31% at peak.
+
+§272. Week 20 — Infra team.
+Next quarter the focus shifts to capacity planning. Tomás paired with Mobile on the shared library upgrade. After the change, p95 latency dropped from 536 ms to 42 ms. The team investigated an off-by-one in pagination; root cause was traced to a misconfigured retry policy. Ruth hardened the notification fanout and closed out 4 tickets.
+
+§273. Week 20 — Data team.
+The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy. Kofi benchmarked the notification fanout and closed out 13 tickets. Jonas paired with Data on the shared library upgrade. A design review will decide whether to generalize this. After the change, on-call pages dropped by 13%. Deploy window for week 20 completed without rollback. Capacity review: current headroom is about 40% at peak.
+
+§274. Week 20 — Frontend team.
+Deploy window for week 20 completed without rollback. No further action is expected unless the trend reverses. The team investigated certificate rotation failures; root cause was traced to a misconfigured retry policy. Elena paired with Data on the shared library upgrade. Capacity review: current headroom is about 19% at peak. After the change, storage costs came down roughly 14%. Liam deprecated the ingestion pipeline and closed out 7 tickets.
+
+§275. Week 20 — Auth team.
+Deploy window for week 20 completed without rollback. The team investigated queue backpressure; root cause was traced to a misconfigured retry policy. Capacity review: current headroom is about 31% at peak. Oleg migrated the metrics collector and closed out 10 tickets.
+
+§276. Week 20 — Notifications team.
+After the change, storage costs came down roughly 91%. The team investigated duplicate delivery during failover; root cause was traced to a misconfigured retry policy. Jonas load-tested the metrics collector and closed out 14 tickets. Capacity review: current headroom is about 41% at peak.
+
+§277. Week 20 — QA team.
+Marcus simplified the rate limiter and closed out 14 tickets. Capacity review: current headroom is about 60% at peak. The remaining work is blocked on the vendor upgrade. The team investigated a flaky integration test; root cause was traced to a misconfigured retry policy. After the change, p95 latency dropped from 459 ms to 20 ms.
+
+§278. Week 20 — SRE team.
+Next quarter the focus shifts to capacity planning. Deploy window for week 20 completed without rollback. After the change, build times went from 469 s to 89 s. Priya paired with Auth on the shared library upgrade. Capacity review: current headroom is about 31% at peak. Wei instrumented the feature-flag service and closed out 4 tickets.
+
+§279. Week 20 — Payments team.
+The team investigated clock drift on two nodes; root cause was traced to a misconfigured retry policy. After the change, build times went from 255 s to 37 s. Nadia containerized the ingestion pipeline and closed out 12 tickets. Amara paired with QA on the shared library upgrade. Capacity review: current headroom is about 36% at peak. A design review will decide whether to generalize this. Deploy window for week 20 completed without rollback.
+
+§280. Week 20 — Analytics team.
+After the change, p95 latency dropped from 868 ms to 13 ms. The team investigated a memory leak under sustained load; root cause was traced to a misconfigured retry policy. Deploy window for week 20 completed without rollback. Wei simplified the ingestion pipeline and closed out 14 tickets. Capacity review: current headroom is about 28% at peak. Next quarter the focus shifts to capacity planning. Petra paired with Platform on the shared library upgrade.
