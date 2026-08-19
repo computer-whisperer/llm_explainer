@@ -54,9 +54,26 @@ in localStorage). Server config: `/ceph/public/k8s/apps/llama_cpp/llama-gemma-4-
    vary with sampling on). Prompt shapes in `js/scenes/rot.js` must stay
    byte-identical to the calibration script or the numbers shift.
 
-Planned: thinking traces (the `<|channel>thought` machinery is already
-understood), plus a terminal segment staged separately (coding harness,
-CLAUDE.md A/B, Jacobian reaction).
+5. **Thinking** — A/B: thinking closed vs open on the scene-4 edge questions,
+   with the thought channel streamed live in a violet panel and token/time
+   cost per pane. A "show the actual difference" panel renders both prompts
+   as chips: the entire feature is `<|think|>` in the system turn plus
+   whether the harness pre-closes `<|channel>thought<channel|>`. "Plant a
+   thought" prefills the channel: the hard question (2847*639) parrots a
+   plausible planted answer; the easy one (1234*567) overrides it — the
+   model only trusts notes it can't check. Planted runs use
+   `cache_prompt:false`: greedy is not bit-stable across cache states on
+   this server, and warm-cache batch numerics tip that knife-edge decision.
+   Calibration: 2847*639 no-think ✗ → think ✓ (~460 tokens); marathon-feet
+   no-think ✗ → think ✗ with the arithmetic slip visible in the trace;
+   1234*567 correct both ways (~30x token cost with thinking). Under 24k
+   noise + thinking (not in UI, measured once): the trace reached the right
+   answer but the post-channel copy came out garbled ("6996") — optional
+   narrated beat, costs a ~25s prompt eval and evicts the rot cache.
+   Staging: `?scene=think&thinkpreset=N&autorun=1&planted=1&diff=1`.
+
+Planned: a terminal segment staged separately (coding harness, CLAUDE.md
+A/B, Jacobian reaction) and a one-page presenter runbook.
 
 ## Dev notes
 

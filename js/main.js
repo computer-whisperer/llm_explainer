@@ -3,6 +3,7 @@ import { initTokenizerScene } from "./scenes/tokenizer.js";
 import { initNextTokenScene } from "./scenes/nexttoken.js";
 import { initDocumentScene } from "./scenes/document.js";
 import { initRotScene } from "./scenes/rot.js";
+import { initThinkScene } from "./scenes/think.js";
 
 const client = new LlamaClient();
 
@@ -58,3 +59,4 @@ initTokenizerScene(client);
 initNextTokenScene(client);
 initDocumentScene(client);
 initRotScene(client);
+initThinkScene(client);

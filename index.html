@@ -14,6 +14,7 @@
     <button class="tab" data-scene="nexttoken" title="Key: 2">2 · Next-token loop</button>
     <button class="tab" data-scene="document" title="Key: 3">3 · The Document</button>
     <button class="tab" data-scene="rot" title="Key: 4">4 · Context Rot</button>
+    <button class="tab" data-scene="think" title="Key: 5">5 · Thinking</button>
   </nav>
   <div class="server-status" id="server-status">
     <span class="dot" id="status-dot"></span>
@@ -181,6 +182,64 @@
         <div class="mini-bars" id="rot-b-bars"></div>
         <div class="kv-note" id="rot-b-kv"></div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ Scene 5: Thinking ============ -->
+  <section class="scene" id="scene-think">
+    <div class="scene-head">
+      <h1>Thinking is more tokens, not a different machine</h1>
+      <p class="lede">"Reasoning mode" is the same next-token loop, given room to write notes to
+        itself before answering — in a region the chat UI normally hides. The toggle is a couple
+        of scaffolding tokens.</p>
+    </div>
+
+    <div class="presets" id="think-presets"></div>
+
+    <div class="rot-controls">
+      <input id="think-question" class="big-input rot-q" spellcheck="false">
+      <label class="toggle"><input type="checkbox" id="think-greedy" checked> greedy</label>
+      <button id="think-run" class="btn primary">Run A/B ▸</button>
+    </div>
+
+    <label class="toggle scaffold-toggle">
+      <input type="checkbox" id="think-show-diff"> show the actual difference in the document
+    </label>
+    <div class="scaffold-panel" id="think-diff-panel" hidden>
+      <p class="scaffold-note">The entire feature: with thinking, the system turn carries
+        <b>&lt;|think|&gt;</b> and the thought channel is left open for the model to fill.
+        Without it, the harness closes the channel before the model gets a say.</p>
+      <div class="panel-label">thinking enabled</div>
+      <div class="chip-flow small" id="think-diff-on"></div>
+      <div class="panel-label" style="margin-top:10px">thinking disabled</div>
+      <div class="chip-flow small" id="think-diff-off"></div>
+    </div>
+
+    <div class="rot-layout">
+      <div class="rot-pane">
+        <div class="rot-pane-head">A — thinking closed <span class="rot-meta" id="think-a-meta"></span></div>
+        <div class="rot-answer" id="think-a-answer"><span class="rot-idle">—</span></div>
+        <div class="kv-note" id="think-a-kv"></div>
+      </div>
+      <div class="rot-pane" id="think-pane-b">
+        <div class="rot-pane-head">B — thinking open <span class="rot-meta" id="think-b-meta"></span></div>
+        <div class="think-thought-wrap">
+          <div class="panel-label">the thought channel <span class="hint">(normally hidden by the UI)</span></div>
+          <div class="think-thought" id="think-b-thought"><span class="rot-idle">—</span></div>
+        </div>
+        <div class="rot-answer" id="think-b-answer"><span class="rot-idle">—</span></div>
+        <div class="kv-note" id="think-b-kv"></div>
+      </div>
+    </div>
+
+    <div class="plant-panel">
+      <div class="panel-label">plant a thought
+        <span class="hint">— prefill the thought channel yourself and let it answer</span></div>
+      <div class="rot-controls" style="margin-bottom:10px">
+        <input id="think-plant" class="big-input rot-q" spellcheck="false">
+        <button id="think-plant-run" class="btn">Run with planted thought ▸</button>
+      </div>
+      <div class="rot-answer" id="think-plant-answer" hidden></div>
     </div>
   </section>
 

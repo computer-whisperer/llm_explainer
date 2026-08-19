@@ -91,12 +91,13 @@ export class LlamaClient {
 export async function streamCompletion(
   client,
   prompt,
-  { stop = [], slot = 0, nProbs = 0, greedy = false, signal, onToken } = {}
+  { stop = [], slot = 0, nProbs = 0, greedy = false, nPredict = 1024,
+    cachePrompt = true, signal, onToken } = {}
 ) {
   const body = {
     prompt,
-    n_predict: 1024,
-    cache_prompt: true,
+    n_predict: nPredict,
+    cache_prompt: cachePrompt,
     id_slot: slot,
     stream: true,
     stop,

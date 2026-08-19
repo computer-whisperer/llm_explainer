@@ -312,6 +312,22 @@ main { flex: 1; overflow-y: auto; }
 .mini-bar-row .bar-pct { font-size: 12px; }
 .mini-bars .panel-label { margin-top: 6px; }
 
+/* ---------- scene 5: thinking ---------- */
+#think-pane-b { border-color: rgba(144, 133, 233, 0.4); }
+.think-thought-wrap { margin-bottom: 10px; }
+.think-thought {
+  background: rgba(144, 133, 233, 0.07); border: 1px dashed rgba(144, 133, 233, 0.4);
+  border-radius: 10px; padding: 10px 14px;
+  font-family: var(--mono); font-size: 13px; line-height: 1.55; color: var(--ink-2);
+  white-space: pre-wrap; word-break: break-word;
+  max-height: 34vh; overflow-y: auto; min-height: 44px;
+}
+.plant-panel {
+  margin-top: 26px; border: 1px dashed var(--baseline); border-radius: 12px;
+  padding: 14px 18px;
+}
+.plant-panel .rot-answer { margin-top: 4px; }
+
 /* ---------- lightbox ---------- */
 .lightbox {
   width: min(940px, 92vw); height: 82vh;
