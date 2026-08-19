@@ -37,6 +37,8 @@ export function initNextTokenScene(client) {
   const presets = document.getElementById("nt-presets");
   const tooltip = document.getElementById("tooltip");
 
+  const ctxTokensToggle = document.getElementById("nt-show-ctx-tokens");
+  const ctxChips = document.getElementById("nt-ctx-chips");
   const scaffoldToggle = document.getElementById("nt-show-scaffold");
   const scaffoldPanel = document.getElementById("nt-scaffold-panel");
   const scaffoldChips = document.getElementById("nt-scaffold-chips");
@@ -77,6 +79,19 @@ export function initNextTokenScene(client) {
   }
 
   // ---- rendering ----
+
+  let ctxChipsSeq = 0;
+  async function renderCtxChips() {
+    if (ctxChips.hidden) return;
+    const seq = ++ctxChipsSeq;
+    try {
+      const tokens = ctx.value ? await client.tokenize(ctx.value) : [];
+      if (seq !== ctxChipsSeq) return; // stale response
+      renderChips(ctxChips, tokens);
+    } catch (e) {
+      console.error("context tokenize failed:", e);
+    }
+  }
 
   function renderGenerated(animateLast = false) {
     renderChips(
@@ -241,6 +256,7 @@ export function initNextTokenScene(client) {
       renderGenerated(true);
       renderEntropy();
       renderKv(r.timings);
+      renderCtxChips();
       return true;
     } catch (e) {
       console.error("step failed:", e);
@@ -259,6 +275,7 @@ export function initNextTokenScene(client) {
     generated[generated.length - 1] = { id: t.id, token: t.token };
     renderBars();
     renderGenerated(true);
+    renderCtxChips();
   }
 
   async function playLoop() {
@@ -281,6 +298,7 @@ export function initNextTokenScene(client) {
     renderBars();
     renderGenerated();
     renderEntropy();
+    renderCtxChips();
     kvEl.textContent = "";
   }
 
@@ -308,9 +326,16 @@ export function initNextTokenScene(client) {
     renderEntropy();
     renderBars();
   }
+  let ctxDebounce = null;
   ctx.addEventListener("input", () => {
     baseText = ctx.value;
     invalidateTrail();
+    clearTimeout(ctxDebounce);
+    ctxDebounce = setTimeout(renderCtxChips, 250);
+  });
+  ctxTokensToggle.addEventListener("change", () => {
+    ctxChips.hidden = !ctxTokensToggle.checked;
+    renderCtxChips();
   });
 
   scaffoldToggle.addEventListener("change", () => {

@@ -1,6 +1,7 @@
 import { LlamaClient } from "./api.js";
 import { initTokenizerScene } from "./scenes/tokenizer.js";
 import { initNextTokenScene } from "./scenes/nexttoken.js";
+import { initDocumentScene } from "./scenes/document.js";
 
 const client = new LlamaClient();
 
@@ -54,3 +55,4 @@ checkServer();
 // ---- scenes ----
 initTokenizerScene(client);
 initNextTokenScene(client);
+initDocumentScene(client);

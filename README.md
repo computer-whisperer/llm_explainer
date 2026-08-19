@@ -24,10 +24,31 @@ in localStorage). Server config: `/ceph/public/k8s/apps/llama_cpp/llama-gemma-4-
    alternative token), per-step entropy stat + sparkline, KV-cache reuse note
    from `timings.cache_n` / `timings.prompt_n`.
 
-Planned: The Document (chat-template unveiling + rewriting the model's words +
-KV receipts), Context Rot (pre-cooked degraded sessions + live continuation +
-entropy timeline), plus a terminal segment staged separately (coding harness,
-CLAUDE.md A/B, Jacobian reaction).
+3. **The Document** — a chat UI and the raw templated document side by side,
+   same state. Streaming replies over `/completion` (slot 1; scene 2 owns
+   slot 0). Bubbles are contenteditable (rewrite the model's words, then ask
+   it why it said that); turns can be deleted; the last reply can be re-rolled.
+   Tools (calculator · clock · canned weather, `js/tools.js`): declarations are
+   spliced into the system turn (rendered once via `/apply-template` + slice);
+   generation stops at `<tool_call|>`, the call is parsed and shown, the
+   harness runs it (manually or auto), the result is pasted into the document
+   in template format, and generation continues the same turn. The document is
+   **append-only**: history stays byte-for-byte what was generated, never
+   re-rendered through the template, so the doc view and KV numbers stay
+   truthful. Staging: `?scene=document&preset=N&autorun=1&autoreply=1`.
+
+Planned: Context Rot (pre-cooked degraded sessions + live continuation +
+entropy timeline), thinking traces (the `<|channel>thought` machinery is
+already understood), plus a terminal segment staged separately (coding
+harness, CLAUDE.md A/B, Jacobian reaction).
+
+## Dev notes
+
+Headless verification: `--virtual-time-budget` works for the non-streaming
+scenes but NOT for streaming (virtual time races ahead of real SSE chunks) —
+use `dev/cdp_shot.py <url> <wait_seconds> <out.png>` instead, which drives
+headless chromium over CDP in real time and prints the kv/stats/chat text
+for grepping.
 
 ## Server facts (probed 2026-08-19)
 

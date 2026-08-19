@@ -12,6 +12,7 @@
   <nav class="tabs" id="tabs">
     <button class="tab active" data-scene="tokenizer" title="Key: 1">1 · Tokens</button>
     <button class="tab" data-scene="nexttoken" title="Key: 2">2 · Next-token loop</button>
+    <button class="tab" data-scene="document" title="Key: 3">3 · The Document</button>
   </nav>
   <div class="server-status" id="server-status">
     <span class="dot" id="status-dot"></span>
@@ -80,9 +81,12 @@
             <input id="nt-instruction" class="url-input instr-input" spellcheck="false">
           </div>
         </div>
-        <div class="panel-label">context (the document so far — editable)</div>
+        <div class="panel-label">context (the document so far — editable)
+          <label class="toggle inline-toggle"><input type="checkbox" id="nt-show-ctx-tokens"> as tokens</label>
+        </div>
         <textarea id="nt-context" class="big-input" rows="6" spellcheck="false"
           placeholder="Start typing a prompt…"></textarea>
+        <div class="chip-flow small" id="nt-ctx-chips" hidden style="margin-top:8px"></div>
 
         <div class="nt-controls">
           <button id="nt-step" class="btn primary">Step ▸</button>
@@ -116,6 +120,57 @@
             <svg id="nt-spark" width="100%" height="72" preserveAspectRatio="none"></svg>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Scene 3: The Document ============ -->
+  <section class="scene" id="scene-document">
+    <div class="scene-head">
+      <h1>A conversation is one growing document</h1>
+      <p class="lede">The chat on the left and the document on the right are the same thing.
+        The model re-reads the whole document to produce every reply — turns, tool results,
+        even its own words are just text it continues.</p>
+    </div>
+
+    <div class="presets" id="doc-presets"></div>
+
+    <div class="doc-layout">
+      <div class="doc-left">
+        <div class="doc-config">
+          <label class="doc-sys-row">
+            <span class="panel-label">system prompt</span>
+            <input id="doc-system" class="url-input instr-input" spellcheck="false">
+          </label>
+          <div class="doc-tools-row">
+            <label class="toggle"><input type="checkbox" id="doc-tools"> give the model tools
+              <span class="hint">(calculator · clock · weather)</span></label>
+            <label class="toggle"><input type="checkbox" id="doc-autorun"> auto-run tool calls</label>
+          </div>
+        </div>
+
+        <div class="chat-log" id="chat-log"></div>
+
+        <div class="composer">
+          <input id="doc-input" class="big-input composer-input" spellcheck="false"
+            placeholder="Say something…">
+          <button id="doc-send" class="btn primary">Send ▸</button>
+          <button id="doc-continue" class="btn" title="Generate a model reply for the current document">↻ Reply</button>
+          <button id="doc-stop" class="btn subtle" hidden>■ Stop</button>
+        </div>
+        <div class="kv-note" id="doc-kv"></div>
+      </div>
+
+      <div class="doc-right">
+        <div class="panel-label">what the model actually sees
+          <span class="seg-toggle" id="doc-mode">
+            <button class="seg active" data-mode="text">text</button>
+            <button class="seg" data-mode="tokens">tokens</button>
+          </span>
+        </div>
+        <div class="doc-view" id="doc-view"></div>
+        <div class="chip-flow small doc-chips" id="doc-chips" hidden></div>
+        <div class="doc-stats" id="doc-stats"></div>
       </div>
     </div>
   </section>

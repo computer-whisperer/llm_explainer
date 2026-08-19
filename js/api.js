@@ -25,11 +25,13 @@ export class LlamaClient {
 
   // Render the model's chat template server-side. Thinking is disabled by
   // closing the thought channel, so completions continue prose, not reasoning.
-  async applyTemplate(messages, { enableThinking = false } = {}) {
-    const r = await this._post("/apply-template", {
+  async applyTemplate(messages, { enableThinking = false, tools } = {}) {
+    const body = {
       messages,
       chat_template_kwargs: { enable_thinking: enableThinking },
-    });
+    };
+    if (tools) body.tools = tools;
+    const r = await this._post("/apply-template", body);
     return r.prompt;
   }
 
@@ -52,15 +54,16 @@ export class LlamaClient {
   // One step of the loop: real logits for the next position.
   // Returns { sampled: {token, id, logprob}, top: [{id, token, prob, logprob}],
   //           timings, stopType }
-  async nextToken(prompt, { nProbs = 40, greedy = false, signal } = {}) {
+  async nextToken(prompt, { nProbs = 40, greedy = false, slot = 0, signal } = {}) {
     const body = {
       prompt,
       n_predict: 1,
       n_probs: nProbs,
       cache_prompt: true,
       // pin to one slot: otherwise consecutive steps round-robin across the
-      // server's 3 slots and the KV-reuse numbers stop telling a clean story
-      id_slot: 0,
+      // server's 3 slots and the KV-reuse numbers stop telling a clean story.
+      // Scenes use distinct slots so their caches survive scene switches.
+      id_slot: slot,
     };
     if (greedy) body.temperature = 0;
     const r = await this._post("/completion", body, signal);
@@ -80,6 +83,58 @@ export class LlamaClient {
       stopType: r.stop_type,
     };
   }
+}
+
+// Streaming completion. Calls onToken(text) per generated piece; resolves with
+// { content, stopType, stoppingWord, timings }. `stop` strings let the caller
+// halt generation at markers (e.g. the end of a tool call).
+export async function streamCompletion(
+  client,
+  prompt,
+  { stop = [], slot = 0, signal, onToken } = {}
+) {
+  const res = await fetch(client.baseUrl + "/completion", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      prompt,
+      n_predict: 1024,
+      cache_prompt: true,
+      id_slot: slot,
+      stream: true,
+      stop,
+    }),
+    signal,
+  });
+  if (!res.ok) throw new Error(`/completion → HTTP ${res.status}: ${await res.text()}`);
+
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buf = "";
+  let content = "";
+  let final = {};
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buf += decoder.decode(value, { stream: true });
+    const lines = buf.split("\n");
+    buf = lines.pop(); // keep incomplete tail
+    for (const line of lines) {
+      if (!line.startsWith("data: ")) continue;
+      const d = JSON.parse(line.slice(6));
+      if (d.content) {
+        content += d.content;
+        onToken?.(d.content);
+      }
+      if (d.stop) final = d;
+    }
+  }
+  return {
+    content,
+    stopType: final.stop_type,
+    stoppingWord: final.stopping_word || "",
+    timings: final.timings,
+  };
 }
 
 // Entropy (bits) of the next-token distribution, from the top-k probs with the
